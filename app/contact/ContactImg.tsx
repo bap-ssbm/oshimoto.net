@@ -17,7 +17,7 @@ const ContactImg: FC<ContactImgProps> = ({ }) => {
             <div className='pointer-events-none'>
                 <img
                     className='w-full'
-                    src='https://lh3.googleusercontent.com/iLZ_lAQ0eijIwVKFaD4VcGCFHvW59SimvM7CFaUknlDBGJzdHW8vl6EsJQbKn-nvOr7dxrAbg_Ye0Gpgwg0ob1Rd6D2aLTolsf_lLvCgZDZA1oE6d5iunYWqABilGZmKkKSKBYKslg=w2400'
+                    src='https://lh3.googleusercontent.com/PWAdhnmYw8LbjYczU4rcOyWAeF26_hPGVaI-XErP-hg4LLjG-6ErRxFs3rEr1PWEzx1MlYj0X7iF3P4iKdLV82VLgSXvHGvqkVSNUcoF1cEYPGx6x5CM1ji4KW3f9lwZ0dODXsNsvQ=w2400'
                     alt='' />
             </div>
         </motion.div>

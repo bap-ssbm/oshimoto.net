@@ -10,7 +10,7 @@ interface NavMenuProps {
 
 const NavMenu: FC<NavMenuProps> = ({ }) => {
     return (
-        <div className='hidden md:flex lg:gap-32 lg:flex-row flex-col gap-8 items-center md:items-end lg:items-center'>
+        <div className='hidden md:flex xl:gap-32 xl:flex-row flex-col gap-8 items-center md:items-end xl:items-center'>
             <div className='flex  text-sm gap-5 lg:gap-10 xl:gap-16 tracking-[4px] lg:tracking-[6px] font-[300] text-md text-white items-center'>
                 <Link href="/portfolio"><span className='underline-hover-effect relative' >Home</span></Link>
                 <DropDown />
