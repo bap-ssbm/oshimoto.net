@@ -39,7 +39,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
         >
             <div className='flex md:flex-row items-center gap-10 w-full justify-between'>
                 <Link href="/">
-                    <img className='h-20' src='/images/ryuichi oshimoto white.png' alt='logo' />
+                    <img className='h-16 md:h-20' height={80} src='/images/ryuichi oshimoto white.png' alt='logo' />
                 </Link>
                 <button
                     onClick={() => {

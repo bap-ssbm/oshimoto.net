@@ -19,7 +19,16 @@ const Magazine: FC<MagazineProps> = ({ }) => {
                     出会った光景を写真と文章で綴るフォトエッセイ。"
                 </a>
             </div>
-
+            <div className='flex space-x-5'>
+                <p className='text-[14px]'>
+                        デジカメWatch</p>
+                <a  
+                className='hover:underline duration-300 transition'
+                href='https://dc.watch.impress.co.jp/cda/dialy/2007/06/27/6526.html'>
+                     Digital Photo Diary in USA on dc.watch.impress.co.
+                </a>
+            </div>
+           
         </div>
     )
 }
