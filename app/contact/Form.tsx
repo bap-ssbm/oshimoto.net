@@ -127,14 +127,16 @@ const Form: FC<FormProps> = ({ }) => {
         minRows={5}
         required
       />
-         <ReCAPTCHA
-        sitekey="6LfMpJklAAAAADeaKJSsTQwVwC3PIVkUB8B3Yrcg"
-        onChange={captchaChange}
-      />
+        
       <button className='w-fit px-7 py-3 tracking-[4px] border border-white opacity-40 hover:opacity-100 transition duration-300'>
         {isLoading ? (<BiLoaderAlt className='animate-spin' />) : ("SEND")}
       </button>
       {msg&&<p className='tracking-[2px] text-[18px]'>{msg}</p>}
+      <ReCAPTCHA
+        sitekey="6LfMpJklAAAAADeaKJSsTQwVwC3PIVkUB8B3Yrcg"
+        onChange={captchaChange}
+        onExpired={()=>setCaptchaComplete(false)}
+      />
     </motion.form>
   )
 }
