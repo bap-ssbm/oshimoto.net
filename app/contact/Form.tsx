@@ -3,7 +3,7 @@
 import { FC, useState } from 'react'
 import { motion } from 'framer-motion';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-
+import ReCAPTCHA from "react-google-recaptcha";
 import { BiLoaderAlt } from 'react-icons/bi'
 
 
@@ -23,11 +23,16 @@ const Form: FC<FormProps> = ({ }) => {
   const [isLoading, setIsLoading] = useState<Boolean>(false)
 
 
+
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [subject, setSubject] = useState<string>("")
   const [message, setMessage] = useState<string>("")
 
+  const [captchaComplete, setCaptchaComplete] = useState<boolean>(false)
+  const captchaChange = () => {
+    setCaptchaComplete(true)
+  }
 
   const catchName = (e : React.ChangeEvent<HTMLInputElement>)=>{
     setName(e.target.value)
@@ -45,7 +50,8 @@ const Form: FC<FormProps> = ({ }) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let data={
+    if(captchaComplete){
+      let data={
       name: name,
       message: message,
       email: email,
@@ -72,6 +78,9 @@ const Form: FC<FormProps> = ({ }) => {
         setmsg("Something went wrong please try again!")
       }
     })
+  }else{
+    setmsg("Please complete ReCAPTCHA first")
+  }
 
     setIsLoading(false);
   }
@@ -117,6 +126,10 @@ const Form: FC<FormProps> = ({ }) => {
         className='bg-black border border-white opacity-50 focus:opacity-100 focus-within:opacity-95 py-2 px-4 tracking-widest text-white font-Raleway transition duration-300'
         minRows={5}
         required
+      />
+         <ReCAPTCHA
+        sitekey="6LfMpJklAAAAADeaKJSsTQwVwC3PIVkUB8B3Yrcg"
+        onChange={captchaChange}
       />
       <button className='w-fit px-7 py-3 tracking-[4px] border border-white opacity-40 hover:opacity-100 transition duration-300'>
         {isLoading ? (<BiLoaderAlt className='animate-spin' />) : ("SEND")}
