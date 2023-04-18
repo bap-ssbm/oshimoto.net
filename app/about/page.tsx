@@ -26,7 +26,7 @@ const page: FC<pageProps> = ({ }) => {
 
           <div>
             <h1 className='tracking-[5px] text-[25px]'>押本龍一</h1>
-            <h1 className='font-Nixie-One italic'>A Photographer Based in Japan</h1>
+            <h1 className='font-Nixie-One italic'>An Experienced Japanese Photographer</h1>
           </div>
 
 
