@@ -9,7 +9,7 @@ interface SocialIconsProps {
 
 const SocialIcons: FC<SocialIconsProps> = ({ big}) => {
     return (
-        <div className={'flex gap-5 md:gap-3 lg:gap-8 xl:gap-12 items-center text-[16px] ' + (big&&'text-[20px] gap-10 md:gap-10 md:text-[25px]')} >
+        <div className={'flex gap-5 md:gap-3 lg:gap-8 xl:gap-12 items-center ' + (big?'text-[20px] gap-10 md:gap-10 md:text-[25px]':'text-[25px] md:text-[16px]')} >
             <a className='hover:scale-110 transition duration-300' href='https://twitter.com/RyuichiOshimoto'>
                 <BsTwitter />
             </a>
