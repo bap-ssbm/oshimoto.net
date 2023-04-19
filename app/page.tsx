@@ -6,7 +6,7 @@ import MainImgWrapper from "./components/enterPg/MainImgWrapper";
 
 export default function Home() {
   return (
-    <main className='w-full min-h-full bg-black fixed top-0 left-0 z-[100] flex flex-col items-center justify-center'>
+    <main className='w-full min-h-full bg-black absolute top-0 left-0 z-[100] flex flex-col items-center justify-center'>
 
       <MainImgWrapper />
       <MainTitle />
