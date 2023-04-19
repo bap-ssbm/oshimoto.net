@@ -4,24 +4,15 @@ import { FC, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface BioProps {
-
+    english: boolean
 }
 
-const Bio: FC<BioProps> = ({ }) => {
+const Bio: FC<BioProps> = ({ english }) => {
 
-    const [english, setEnglish] = useState(true)
+    
     return (
         <div className='flex flex-col gap-10'>
-            <div className='text-[14px] flex gap-10 '>
-                <button
-                style={english?{borderBottom:'1px solid white'}:{opacity: .5 }}
-                    onClick={() => setEnglish(true)}
-                    className='tracking-[3px] transition duration-300 '>English</button>
-                <button
-                 style={!english?{borderBottom:'1px solid white'}:{opacity: .5 }}
-                    onClick={() => setEnglish(false)}
-                    className='tracking-[3px] transition duration-300'>日本語</button>
-            </div>
+           
             <AnimatePresence mode='wait'>
                 {english ? (
                 <motion.div 

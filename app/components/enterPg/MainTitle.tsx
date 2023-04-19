@@ -54,7 +54,7 @@ const MainTitle: FC<MainTitleProps> = ({ }) => {
                 <Link href="/portfolio">
                     <motion.button 
                     variants={lowerVariants}
-                    className="py-4 px-16 border border-white bg-black rounded-full tracking-[3px] text-[16px]  hover:bg-white bg-opacity-20 hover:text-black hover:scale-110 transition duration-1000 ease-in-out">
+                    className="py-4 px-16 border border-white bg-black rounded-full tracking-[3px] text-[16px]  md:hover:bg-white bg-opacity-20 md:hover:text-black md:hover:scale-110 transition duration-1000 ease-in-out">
                         Enter
                     </motion.button>
                 </Link>
