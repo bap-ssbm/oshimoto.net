@@ -37,12 +37,12 @@ const MainTitle: FC<MainTitleProps> = ({ }) => {
         variants={wrapperVariants}
         initial="initial"
         animate="visible"
-        className="flex justify-center flex-col text-center gap-14 tracking-[5px] relative z-50">
+        className="flex justify-center flex-col text-center gap-14 tracking-[5px] relative z-50 pb-28">
             <div className="font-Nixie-One flex flex-col gap-10">
                 <motion.div 
                 variants={lowerVariants}
                 className="text-[30px] flex justify-center">
-                    <img className="h-32" src="/images/ryuichi oshimoto white.png" />
+                    <img className="max-w-[80vw] md:h-32" src="/images/ryuichi oshimoto white.png" />
                 </motion.div>
                 <motion.h1 
                 variants={lowerVariants}
