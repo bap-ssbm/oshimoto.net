@@ -5,7 +5,7 @@ import Footer from './components/ui/Footer'
 
 export const metadata = {
   title: 'Ryuichi Oshimoto | Photography',
-  description: "Explore the stunning photography of Japanese photographer Ryuichi Oshimoto (押本龍一), based in Japan (日本). Specializing in landscape and portrait photography, his work captures the beauty of nature and the human spirit. Visit his portfolio site now! (彼のポートフォリオサイトを今すぐ訪問してください！)"
+  description: "Explore the stunning photography of Japanese photographer Ryuichi Oshimoto (押本龍一), based in Japan (日本) and the US (アメリカ). Specializing in landscape and portrait photography, his work captures the beauty of nature and the human spirit. Visit his portfolio site now! (彼のポートフォリオサイトを今すぐ訪問してください！)"
 }
 
 
