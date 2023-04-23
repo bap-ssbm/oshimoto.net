@@ -24,6 +24,9 @@ export const peoplePics = [
     src:'https://lh3.googleusercontent.com/pw/AJFCJaX4UlWT7_QEOUfIGOIGG1SXowYOvc3em-a0PLqpH6seD8QKeqcvtIa6pAZ-7Bk4Re4T1wh65ZhMDIN12ur-lDnmIGylQiKyfa7N-9MUyngdy1jO48Y=w2400'
   },
   {
+    src:'https://lh3.googleusercontent.com/K4ZypiR7ApqcmThsI0jV8yEuWDdrfgcHdhQAANpICrAjEWKS_B_N75zutA4-Qx9RrcXv4JQrfZ0LHeRJrLIAVm5Afdpt-kbILwGkXUI1mtpgic8RoKyElpqSsQvDx2fGY2_91ciANQ=w2400'
+  },
+  {
     src: 'https://lh3.googleusercontent.com/EKWWaO45EUx6UJxYdIj-o2-4H9l3uYA_licguOPYr6IWR_DLe4WUP4W-h50kvMvjU9n3fhJ73AI6GQqaY3R9a0aliPuaatdw8VZ795dXBGshI0nQhPMr53wk8vJ7AniWECynF0mwZw=w2400'
   },
   {
@@ -46,6 +49,9 @@ export const peoplePics = [
   },
   {
     src: 'https://lh3.googleusercontent.com/538ab_wVuZy0qSuMSUnTBexE8HUsmWbJ6BSEg_K8m9xMamicH8F1O75EuGHuItlRy0SiFnvnRSiVwVjAS5S0Om9haGAq3R26ZowIvbFjZC6fPtdpqxL500fnJaNrmvs6-J8Rd5wCwA=w2400'
+  },
+  {
+    src:'https://lh3.googleusercontent.com/drM7R0gZi8R9Ydakamu13t6yiEdFQJS-8aNk8jHfmLVgg-USHH_B35AkJGdEID6zte2rKkGwpRJMLCuCJytZJnH6sLFCljpYdbG7UB1AxbkQIO7xHbmnrq5-FWkcFRCsMnFpvVpynQ=w2400'
   },
   {
     src:'https://lh3.googleusercontent.com/pw/AJFCJaVvd8kqyfirU4jwsrPZgI3GEg0PulQHT3Pwi8w2qpVn5Fk9I9RWiR1XTB7R7Ly-SVOJPe1EnPsz__i18tgtvPX-4kLrP-2bnq3Z3MgRhXPQww72yCg=w2400'
@@ -82,6 +88,9 @@ export const peoplePics = [
   },
   {
     src:'https://lh3.googleusercontent.com/mKZ3G3GImCGkgTrWOuuZFPDonh-8ZqUrHbhxrm5kNRfpo59sm3A_itpDheETSu7_5tfFBoZbZigfKXuMHSxqw70yq_Bm1E6QRq17nZSKCdLIRxA1O_zrgHQv8fgVZTBwv-MTS5mqTw=w2400'
+  },
+  {
+    src:'https://lh3.googleusercontent.com/yp-U_SETSaLJL-evwq-5SaYyE9Q43sTcSlgrYx_JT7Z9f6XpD6y74Elm_CTLcbFhVgZ6WrG_jT-WwyszmmMJcZkQa6vSbtj2-YX_nnkyl1CIt4J8PldMV1HyzaJqc2CsV3Znfea2JQ=w2400'
   },
   {
     src: 'https://lh3.googleusercontent.com/ARxu4UPu3O-MKz28OT1ofOh6SMWIaQZbWj-Gkz-bLBcUhgasYkWJfgMeP4_JQEexXQ-krR9SZoMprjKNcs4WAjuCJ3mXu4Kk7hWbHWAxUKVk0k4GdHwZ3tOOSQTQ8WP1wNQZinWKkw=w2400'

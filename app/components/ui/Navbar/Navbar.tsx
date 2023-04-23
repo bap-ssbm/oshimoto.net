@@ -32,7 +32,7 @@ const Navbar: FC<NavbarProps> = ({ }) => {
 
     const [showSide, setShowSide] = useState<Boolean>(false)
     return (
-        <motion.nav className='w-full flex flex-col gap-5 pt-10 pb-12 md:pt-20 md:pb-36 px-[5%] items-center relative z-[10] '
+        <motion.nav className='w-full flex flex-col gap-5 pt-10 pb-12 md:pt-20 md:pb-36 px-[5%] items-center relative z-50 '
             variants={navVariant}
             initial='initial'
             animate='visible'
