@@ -12,13 +12,22 @@ export const peoplePics = [
     src: 'https://lh3.googleusercontent.com/NTPYhnXBjCXQwCIleufcheTywqgHkBCMw1JxVMT7ABkYbnHZ2hKHGW4wfNVIl0oLz4zVzkqzko_tTqhgr-izXIxBIij3q7bJjyR0AbX-Y_Rrx6L7hS7d3Ry-ds0l1qpKrxJ8g6Tfpw=w2400'
   },
   {
+    src:'https://lh3.googleusercontent.com/k52hxpVb6zGTY8wPYSiNLJJ-ykCk_9dwmJv3k3cY4bCut1ZOn7OJtLEaGYJRkB7QmsXkkoR0CdQTp_fvoUVC_VG8qFOpv_LOYXweu_jAp3w82usgWM4nG3bh8A6VYlDIng7GVZItyw=w2400'
+  },
+  {
     src: 'https://lh3.googleusercontent.com/TQUutEB9H2GZvBgYAMANbZV1BFg3j0sr65zJPetE961ld9mR58_uoJLb-oV0n84HfpeK-gdVZ1T7IJ9tKxwowa4MGYY8xsK2KjwLyfzG1mk-zp2jyjGxmU-aqMeaH3mtAcSGhuRbOA=w2400'
+  },
+  {
+    src:'https://lh3.googleusercontent.com/O_hLz2ALHzBxvwqQqoCao9Jaazms7NiwFvH_FIms-Y1UFMfV8bNOz6tgeB9XxJktIxQKIUlV3Se8lUPyEWOc5rPB8eSotjXVKKBprpBqJwZL7p3FgrxJguZ-rqSGM8C7rHdjr0_v-A=w2400'
   },
   {
     src: 'https://lh3.googleusercontent.com/WRu55IqCOblYVhECp62Ob00QMLiX1uyyMFuPi0TRhZHd-1RCE73lFc3gbR3HzK7Yp5ShXw_X_dBf4nh_1ObHPAsfc05oQoAe_dKm-_FB_AHO8rGUmx3n0VlWxAJO2xe738abpU7VVA=w2400'
   },
   {
     src: 'https://lh3.googleusercontent.com/pw/AJFCJaUmZpz7_bY80mT4AEv3sAe5EedAlERU3Z47pIiz3e1OsPpczyYxcd9s2XH9u4zhSy92_2MoR555Z9uCNVSRxykp7FHhdGdSteHsxlt94HO3ZbmUqKk=w2400'
+  },
+  {
+    src:'https://lh3.googleusercontent.com/QIuPeRYAjlDdyAIDq8tThq5edEvIelnyxhKuItQF-RMptoOVfrQPVzYxIE6CFospv7ShBMGCep9GBOAQ57ayDymZ9-ZeBsWisFSdPiomEKCiLfaGYYFEkdu4HZgFsLNt0PoOTCD8OA=w2400'
   },
   {
     src:'https://lh3.googleusercontent.com/pw/AJFCJaX4UlWT7_QEOUfIGOIGG1SXowYOvc3em-a0PLqpH6seD8QKeqcvtIa6pAZ-7Bk4Re4T1wh65ZhMDIN12ur-lDnmIGylQiKyfa7N-9MUyngdy1jO48Y=w2400'
@@ -28,6 +37,9 @@ export const peoplePics = [
   },
   {
     src: 'https://lh3.googleusercontent.com/EKWWaO45EUx6UJxYdIj-o2-4H9l3uYA_licguOPYr6IWR_DLe4WUP4W-h50kvMvjU9n3fhJ73AI6GQqaY3R9a0aliPuaatdw8VZ795dXBGshI0nQhPMr53wk8vJ7AniWECynF0mwZw=w2400'
+  },
+  {
+    src:'https://lh3.googleusercontent.com/iQHFzQwEXmwRh_UkTxUiDfTuD2C00LjHV1VEDTObvg0cX6589M1Dnc76PJ8sIB_R6DglEEdJJ9mF8FzvQNk9c2ix-O83GeLyfzNuTmeulD49X78xMyXSYTxRTrWEQJWicXn3UwV91w=w2400'
   },
   {
     src:'https://lh3.googleusercontent.com/pw/AJFCJaUVHOGQjbsA4xk_8YT0HTcpE2DhmVlIqXjswuMcPiYT7gluUYnwgGjcPAPbYO6KA9mnqX8VtLdzGJHZiLhTH6K0ToCbZ53rjSlq_CZDRhBfuVT0hh8=w2400'
