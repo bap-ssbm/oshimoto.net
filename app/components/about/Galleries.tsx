@@ -67,10 +67,10 @@ const Galleries: FC<GalleriesProps> = ({ english }) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1, transition: { duration: 0.4 } }}
                                     exit={{ opacity: 0 }}>「新たなる光 生まれ変わったアレグリア」</motion.p>)}
-                            <a className='underline ml-3' href='/events/lbtsyasinten.pdf' download>
+                            <a className='underline ml-3' href='/events/lbtsyasinten.pdf' >
                                 PDF 1
                             </a>
-                            <a className='underline ml-3' href='/events/LBTphoto.oshimoto.pdf' download>
+                            <a className='underline ml-3' href='/events/LBTphoto.oshimoto.pdf' >
                                 PDF 2
                             </a>
                         </AnimatePresence>
