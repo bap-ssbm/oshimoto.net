@@ -3,16 +3,14 @@ import SocialIcons from '../ui/SocialIcons'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import Link from 'next/link'
 import { HiOutlineArrowLongRight } from 'react-icons/hi2'
+import HeroVideo from './portfolio/HeroVideo'
 interface HeroProps {
 }
 const Hero: FC<HeroProps> = ({ }) => {
     return (
         <div className='min-h-screen relative'>
             <div className='relative'>
-                <video className='object-cover lg:w-full right-0 opacity-70 min-h-screen' autoPlay  playsInline muted loop preload='auto'>
-                    <source src="/video/20230129_CX取材.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                <HeroVideo/>
                 <div className='absolute w-full h-screen top-0 bg-opacity-40 z-10 px-[5%] grid place-content-center'>
                     <div className='text-center flex flex-col items-center'>
                         <h1 className='text-[40px] font-Geologica text-center font-bold'>
