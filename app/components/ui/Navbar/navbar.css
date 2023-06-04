@@ -1,0 +1,17 @@
+@media (min-width: 768px) {
+  .underline-hover-effect::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    scale: 0;
+    height: 1px;
+    background-color: rgb(244, 244, 244);
+    transition: scale 0.5s ease-in;
+  }
+
+  .underline-hover-effect:hover::before {
+    scale: 1;
+  }
+}
