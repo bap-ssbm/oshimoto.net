@@ -3,7 +3,7 @@ import SocialIcons from '../ui/SocialIcons'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import Link from 'next/link'
 import { HiOutlineArrowLongRight } from 'react-icons/hi2'
-import HeroVideo from './portfolio/HeroVideo'
+import HeroVideo from './HeroVideo'
 interface HeroProps {
 }
 const Hero: FC<HeroProps> = ({ }) => {
