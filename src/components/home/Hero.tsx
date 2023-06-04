@@ -9,7 +9,7 @@ const Hero: FC<HeroProps> = ({ }) => {
     return (
         <div className='min-h-screen relative'>
             <div className='relative'>
-                <video className='object-cover lg:w-full right-0 opacity-70 min-h-screen' autoPlay muted loop preload='auto'>
+                <video className='object-cover lg:w-full right-0 opacity-70 min-h-screen' autoPlay  playsInline muted loop preload='auto'>
                     <source src="/video/20230129_CX取材.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
