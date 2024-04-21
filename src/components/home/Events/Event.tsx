@@ -7,9 +7,10 @@ interface EventProps {
     name: string,
     place: string,
     pdf?: string,
+    link?: string,
     img: string
 }
-const Event: FC<EventProps> = ({ date, name, place, pdf, img }) => {
+const Event: FC<EventProps> = ({link, date, name, place, pdf, img }) => {
    
     const [showImg, setShowImg] = useState(false)
     return (
@@ -39,6 +40,7 @@ const Event: FC<EventProps> = ({ date, name, place, pdf, img }) => {
                     <p>
                         {place}
                     </p>
+                    {link&&<a href={link}  target="_blank" rel="noopener noreferrer">Check instagram</a>}
                     {pdf&&<a href={pdf}  target="_blank" rel="noopener noreferrer">Download PDF</a>}
                 </div>
             </div>

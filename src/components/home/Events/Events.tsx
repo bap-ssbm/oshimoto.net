@@ -9,6 +9,13 @@ const Events: FC<EventsProps> = ({ }) => {
         Recent Exhibitions
       </h1>
       <div>
+      <Event
+          date='2024年7月1日~7日'
+          name='第70回全日本チンドンコンクール特別写真展示「おかえり、チンドン」'
+          place='富山駅南北自由通路'
+          img='/images/event-img-01.jpg'
+          link='https://www.instagram.com/p/C5KM9D7OFx2/'
+          />
         <Event
           date='2023/4/28 - 2023/6/8'
           name='「新たなる光 生まれ変わったアレグリア」Part 2'
