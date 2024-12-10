@@ -1,0 +1,11 @@
+.socialIcons {
+    .hoverAnimation {
+        transition: .5s ease;
+
+        @media (min-width: 768px) { 
+           &:hover {
+            color: #ccc;
+            }
+        }
+    }
+}

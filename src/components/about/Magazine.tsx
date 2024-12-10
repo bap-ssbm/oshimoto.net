@@ -20,16 +20,18 @@ const Magazine: FC<MagazineProps> = ({ english }) => {
                     {
                         english ? (
                             <motion.a
+                                target='_blank'
                                 key={1}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1, transition: { duration: 0.4 } }}
                                 exit={{ opacity: 0 }}
                                 className='hover:underline duration-300 transition'
-                                href='https://www.sigma-global.com/jp/magazine/m_series/oshimoto-photoessay/'>
+                                href='https://www.sigma-global.com/jp/contents/20241204/'>
                                 "Ryuichi Oshimoto "The Sights I Encountered" A photo essay in which the photographer describes the sights he encountered in his travels."
                             </motion.a>
                         ) : (
                             <motion.a
+                                target='_blank'
                                 key={2}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1, transition: { duration: 0.4 } }}

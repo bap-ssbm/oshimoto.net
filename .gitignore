@@ -90,6 +90,8 @@ coverage
 build/Release
 
 # Dependency directories
+
+.next
 node_modules
 jspm_packages
 
