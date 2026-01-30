@@ -16,7 +16,8 @@ export async function POST(req: Request, res: NextApiResponse) {
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
-    port:587,
+    port: 465, // Use 465 for SSL/secure: true
+    secure: true,
     auth: {
       user: email,
       pass: pass,
