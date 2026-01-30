@@ -8,9 +8,11 @@ const page: FC<pageProps> = ({ }) => {
   return (
     <div className='px-[6%] pt-[200px] md:flex-row flex-col font-Raleway flex gap-20 max-w-[1400px] min-h-[60vh] mx-auto'>
      <ContactImg/>
-      <div className='flex-1 flex flex-col gap-24 order-2'>
-         <h1 className='text-[25px] font-Nixie-One'>Get in Touch!</h1>
+      <div className='flex-1 flex flex-col  order-2'>
+         <h1 className='text-[25px] font-Nixie-One mb-20'>Get in Touch!</h1>
+        
         <Form/>
+        <p className='text-lg mt-10 mb-10'>or email me at <a href="mailto:ryuichi.oshimoto@gmail.com" className='underline'>ryuichi.oshimoto@gmail.com</a></p>
       </div>
     </div>
   )
