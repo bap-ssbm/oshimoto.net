@@ -1,10 +1,11 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import { motion } from 'framer-motion';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import ReCAPTCHA from "react-google-recaptcha";
 import { BiLoaderAlt } from 'react-icons/bi'
+import emailjs from '@emailjs/browser';
 
 
 
@@ -19,7 +20,7 @@ const Form: FC<FormProps> = ({ }) => {
 
 
   const [msg, setmsg] = useState<string|null>()
-  
+  const formRef = useRef<HTMLFormElement>(null) // for form submission
   const [isLoading, setIsLoading] = useState<Boolean>(false)
 
 
@@ -59,36 +60,33 @@ const Form: FC<FormProps> = ({ }) => {
     }
     console.log(data)
     setIsLoading(true)
-    await fetch("api/contact", {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      }),
-      body: JSON.stringify(data)
-    }).then((res)=>{
-      
-      if(res.status===200){
-        setmsg("Message sent!")
-        setIsLoading(false);
-        setMessage("")
-        setSubject("")
+      if(formRef.current){
+        emailjs
+          .sendForm('service_l49owur', 'template_071s328', formRef.current, {
+            publicKey: process.env.EMAIL_CODE,
+          }).then(() => {
+                          setmsg("Message sent!")
+                          setIsLoading(false);
+                          setMessage("")
+                          setSubject("")
+                        },
+                        (error) => {
+                          setIsLoading(false);
+                          console.log(error)
+                          setmsg("Something went wrong please try again!")
+                        }
+                    );
+                    }
       }else{
-        setIsLoading(false);
-        setmsg("Something went wrong please try again!")
+        setmsg("Please complete ReCAPTCHA first")
       }
-    })
-  }else{
-    setmsg("Please complete ReCAPTCHA first")
-  }
 
     setIsLoading(false);
   }
   return (
-    <motion.form
-    initial={{opacity:0}}
-    animate={{opacity:1}}
+    <form
       onSubmit={onSubmit}
+      ref={formRef}
       className='flex flex-col gap-7'>
 
       <input
@@ -137,7 +135,7 @@ const Form: FC<FormProps> = ({ }) => {
         onChange={captchaChange}
         onExpired={()=>setCaptchaComplete(false)}
       />
-    </motion.form>
+    </form>
   )
 }
 
