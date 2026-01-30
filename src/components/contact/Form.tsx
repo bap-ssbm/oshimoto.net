@@ -63,7 +63,7 @@ const Form: FC<FormProps> = ({ }) => {
       if(formRef.current){
         emailjs
           .sendForm('service_l49owur', 'template_071s328', formRef.current, {
-            publicKey: process.env.EMAIL_CODE,
+            publicKey: process.env.NEXT_PUBLIC_EMAIL_CODE,
           }).then(() => {
                           setmsg("Message sent!")
                           setIsLoading(false);
