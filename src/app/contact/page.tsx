@@ -12,7 +12,7 @@ const page: FC<pageProps> = ({ }) => {
          <h1 className='text-[25px] font-Nixie-One mb-20'>Get in Touch!</h1>
         
         <Form/>
-        <p className='text-lg mt-10 mb-10'>or email me at <a href="mailto:ryuichi.oshimoto@gmail.com" className='underline'>ryuichi.oshimoto@gmail.com</a></p>
+        <p className='text-lg mt-10 mb-10'>or email me at <a href="mailto:ryuoshimoto@gmail.com" className='underline'>ryuoshimoto@gmail.com</a></p>
       </div>
     </div>
   )
