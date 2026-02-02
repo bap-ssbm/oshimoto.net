@@ -26,7 +26,7 @@ const Magazine: FC<MagazineProps> = ({ english }) => {
                                 animate={{ opacity: 1, transition: { duration: 0.4 } }}
                                 exit={{ opacity: 0 }}
                                 className='hover:underline duration-300 transition'
-                                href='https://www.sigma-global.com/jp/contents/20241204/'>
+                                href='https://www.sigma-global.com/jp/special/archive-contents/?category=oshimoto-photoessay'>
                                 "Ryuichi Oshimoto "The Sights I Encountered" A photo essay in which the photographer describes the sights he encountered in his travels."
                             </motion.a>
                         ) : (
