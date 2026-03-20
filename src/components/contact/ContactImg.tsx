@@ -1,27 +1,18 @@
-'use client'
+import { useGsapFadeIn } from '../../hooks/useGsapFadeIn';
+import { CONTACT_IMAGE } from '../../data/site-config';
 
-import { FC } from 'react'
-import { motion } from 'framer-motion'
+export default function ContactImg() {
+  const divRef = useGsapFadeIn(0.8);
 
-interface ContactImgProps {
-
+  return (
+    <div ref={divRef} style={{ opacity: 0 }} className="flex flex-col md:w-[33%] order-[3] md:order-1">
+      <div className="pointer-events-none">
+        <img
+          className="w-full"
+          src={CONTACT_IMAGE}
+          alt="Ryuichi Oshimoto portrait"
+        />
+      </div>
+    </div>
+  );
 }
-
-const ContactImg: FC<ContactImgProps> = ({ }) => {
-    return (
-        <motion.div 
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        className='flex flex-col md:w-[33%]  order-[3] md:order-1'>
-
-            <div className='pointer-events-none'>
-                <img
-                    className='w-full'
-                    src='https://lh3.googleusercontent.com/PWAdhnmYw8LbjYczU4rcOyWAeF26_hPGVaI-XErP-hg4LLjG-6ErRxFs3rEr1PWEzx1MlYj0X7iF3P4iKdLV82VLgSXvHGvqkVSNUcoF1cEYPGx6x5CM1ji4KW3f9lwZ0dODXsNsvQ=w2400'
-                    alt='' />
-            </div>
-        </motion.div>
-    )
-}
-
-export default ContactImg

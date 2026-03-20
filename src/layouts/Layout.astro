@@ -1,0 +1,52 @@
+---
+import '../styles/globals.css';
+import Navbar from '../components/ui/navbar/Navbar';
+import Footer from '../components/ui/Footer';
+import { SITE } from '../data/site-config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogImage = SITE.ogImage,
+  canonicalPath,
+} = Astro.props;
+
+const canonicalURL = canonicalPath ? new URL(canonicalPath, SITE.url).toString() : undefined;
+---
+
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/images/ryuichi oshimoto white.png" />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <title>{title}</title>
+  </head>
+  <body class="text-white text-[16px] bg-black-950 font-brandon-grotesque">
+    <Navbar client:load />
+    <slot />
+    <Footer client:load />
+  </body>
+</html>

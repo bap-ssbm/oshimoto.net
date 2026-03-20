@@ -1,32 +1,25 @@
-'use client'
-import Link from 'next/link'
-import { FC } from 'react'
-import { usePathname } from 'next/navigation'
-interface PortfolioNavProps {
-}
-const PortfolioNav: FC<PortfolioNavProps> = ({ }) => {
-  const pathName = usePathname();
+export default function PortfolioNav() {
+  const pathName = typeof window !== 'undefined' ? window.location.pathname : '';
+
   return (
-    <div className='flex w-full justify-center gap-5 flex-wrap'>
-      <Link href='/portfolio/portraits'>
-        <span className={'relative ' + (pathName === '/portfolio/portraits' ? "active-underline" : "underline-hover-effect")} >
+    <div className="flex w-full justify-center gap-5 flex-wrap">
+      <a href="/portfolio/portraits">
+        <span className={'relative ' + (pathName === '/portfolio/portraits' ? 'active-underline' : 'underline-hover-effect')}>
           Portraits
         </span>
-      </Link>
+      </a>
       /
-      <Link href='/portfolio/na-landscape'>
-        <span className={'relative ' + (pathName === '/portfolio/na-landscape' ? "active-underline" : "underline-hover-effect")} >
+      <a href="/portfolio/na-landscape">
+        <span className={'relative ' + (pathName === '/portfolio/na-landscape' ? 'active-underline' : 'underline-hover-effect')}>
           North American Landscape
         </span>
-      </Link>
+      </a>
       /
-      <Link href='/portfolio/jp-landscape'>
-        <span className={'relative ' + (pathName === '/portfolio/jp-landscape' ? "active-underline" : "underline-hover-effect")} >
+      <a href="/portfolio/jp-landscape">
+        <span className={'relative ' + (pathName === '/portfolio/jp-landscape' ? 'active-underline' : 'underline-hover-effect')}>
           Japan Landscape
         </span>
-      </Link>
+      </a>
     </div>
-  )
+  );
 }
-
-export default PortfolioNav

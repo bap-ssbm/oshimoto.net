@@ -1,22 +1,16 @@
-'use client'
-import { FC } from 'react'
-import {HiArrowLongUp} from 'react-icons/hi2'
+import { HiArrowLongUp } from 'react-icons/hi2';
 
-
-interface UpArrowProps {
-  
-}
-
-const UpArrow: FC<UpArrowProps> = ({}) => {
+export default function UpArrow() {
   return (
     <button
-        className='hover:scale-110 transition duration-500 hover:text-slate-200 px-[10%] pt-16'
-        onClick={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        }}>
-        Back To Top <p className='inline-block teext-[20px]'><HiArrowLongUp /></p>
-      </button>
-  )
+      type="button"
+      className="hover:scale-110 transition duration-500 hover:text-slate-200 px-[10%] pt-16"
+      onClick={() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      }}
+      aria-label="Scroll to top"
+    >
+      Back To Top <span className="inline-block text-[20px]"><HiArrowLongUp /></span>
+    </button>
+  );
 }
-
-export default UpArrow

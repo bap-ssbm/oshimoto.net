@@ -1,42 +1,15 @@
-import { FC } from 'react'
-import Event from './Event'
-interface EventsProps {
-}
-const Events: FC<EventsProps> = ({ }) => {
+import Event from './Event';
+import { events } from '../../../data/events-data';
+
+export default function Events() {
   return (
-    <div >
-      <h1 className='text-[30px] mb-10'>
-        Recent Exhibitions
-      </h1>
+    <div>
+      <h2 className="text-[30px] mb-10">Recent Exhibitions</h2>
       <div>
-      <Event
-          date='2024年7月1日~7日'
-          name='第70回全日本チンドンコンクール特別写真展示「おかえり、チンドン」'
-          place='富山駅南北自由通路'
-          img='/images/event-img-01.jpg'
-          link='https://www.instagram.com/p/C5KM9D7OFx2/'
-          />
-        <Event
-          date='2023/4/28 - 2023/6/8'
-          name='「新たなる光 生まれ変わったアレグリア」Part 2'
-          place='LUMIX BASE Tokyo'
-          img='/images/343767623_245795961252416_9039589037470252456_n.jpg'
-          pdf='/pdf/LBTphoto.oshimoto.pdf'
-          />
-        <Event
-          date='2023/1/27 - 2023/3/9'
-          name='「新たなる光 生まれ変わったアレグリア」Part 1'
-          place='LUMIX BASE Tokyo'
-          img='/images/lumix1.jpg' 
-          pdf='/pdf/lbtsyasinten.pdf'/>
-        <Event
-          date='2020/9/4 - 2020/9/15'
-          name='Death Valley'
-          place='Hayama SPACE AO'
-          img='/images/118794216_175452254099088_3660761354886132152_n.jpg' />
+        {events.map((evt, i) => (
+          <Event key={i} {...evt} />
+        ))}
       </div>
     </div>
-  )
+  );
 }
-
-export default Events

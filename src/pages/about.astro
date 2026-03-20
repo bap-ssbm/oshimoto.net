@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutPgLayout from '../components/about/AboutPgLayout';
+---
+
+<Layout
+  title="About - Ryuichi Oshimoto"
+  description="Learn about Ryuichi Oshimoto, an experienced Japanese photographer based in Los Angeles and Hayama, Japan."
+  canonicalPath="/about"
+>
+  <div class="pt-[200px]">
+    <AboutPgLayout client:load />
+  </div>
+</Layout>

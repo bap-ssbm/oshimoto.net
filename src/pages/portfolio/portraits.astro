@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PortfolioNav from '../../components/portfolio/PortfolioNav';
+import Portfolio from '../../components/portfolio/Portfolio';
+import { peoplePics } from '../../data/portfolio-data.js';
+---
+
+<Layout
+  title="Portraits - Ryuichi Oshimoto"
+  description="Portrait photography by Ryuichi Oshimoto."
+  canonicalPath="/portfolio/portraits"
+>
+  <div class="pt-[100px] md:pt-[200px]">
+    <PortfolioNav client:load />
+    <Portfolio client:load imgData={peoplePics} />
+  </div>
+</Layout>

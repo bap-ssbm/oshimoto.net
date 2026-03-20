@@ -220,3 +220,22 @@ fabric.properties
 !.vscode/extensions.json
 !.vscode/tasks.json
 !.vscode/launch.json
+
+# Claude
+.claude/
+.claudeignore
+CLAUDE.md
+
+# Astro
+dist/
+.astro/
+.vercel/
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

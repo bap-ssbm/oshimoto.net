@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PortfolioNav from '../../components/portfolio/PortfolioNav';
+import Portfolio from '../../components/portfolio/Portfolio';
+import { usPics } from '../../data/portfolio-data.js';
+---
+
+<Layout
+  title="North American Landscape - Ryuichi Oshimoto"
+  description="North American landscape photography by Ryuichi Oshimoto."
+  canonicalPath="/portfolio/na-landscape"
+>
+  <div class="pt-[100px] md:pt-[200px]">
+    <PortfolioNav client:load />
+    <Portfolio client:load imgData={usPics} />
+  </div>
+</Layout>
