@@ -1,0 +1,69 @@
+---
+---
+
+<div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black-950">
+  <div class="text-center">
+    <div class="overflow-hidden">
+      <p id="pre-jp" class="font-noto-serif-jp text-[11px] md:text-[13px] tracking-[0.5em] text-warm-gray/0 mb-4">
+        押本龍一
+      </p>
+    </div>
+    <div class="overflow-hidden">
+      <h1 id="pre-name" class="font-cormorant text-[32px] md:text-[56px] font-light tracking-[0.1em] leading-[1.1] text-cream/0">
+        Ryuichi Oshimoto
+      </h1>
+    </div>
+    <div id="pre-line" class="w-0 h-px bg-gold/50 mx-auto mt-6"></div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const preloader = document.getElementById('preloader');
+  const preJp = document.getElementById('pre-jp');
+  const preName = document.getElementById('pre-name');
+  const preLine = document.getElementById('pre-line');
+
+  const alreadySeen = sessionStorage.getItem('preloader-seen');
+
+  if (!preloader || !preJp || !preName || !preLine || prefersReduced || alreadySeen) {
+    preloader?.remove();
+  } else {
+    sessionStorage.setItem('preloader-seen', '1');
+
+    // Prevent scroll during preloader
+    document.body.style.overflow = 'hidden';
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        document.body.style.overflow = '';
+      },
+    });
+
+    tl.to(preJp, {
+      color: 'rgba(160, 152, 136, 0.7)',
+      y: 0,
+      duration: 0.8,
+      ease: 'expo.out',
+    })
+    .fromTo(preName,
+      { y: 40 },
+      { y: 0, color: 'rgba(232, 224, 212, 1)', duration: 1, ease: 'expo.out' },
+      '-=0.5'
+    )
+    .to(preLine, {
+      width: '80px',
+      duration: 0.8,
+      ease: 'expo.inOut',
+    }, '-=0.6')
+    .to(preloader, {
+      yPercent: -100,
+      duration: 1,
+      ease: 'expo.inOut',
+      delay: 0.3,
+    })
+    .set(preloader, { display: 'none' });
+  }
+</script>

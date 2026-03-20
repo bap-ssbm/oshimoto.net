@@ -1,22 +1,42 @@
-import { useState } from 'react';
-import { useGsapFadeIn } from '../../../hooks/useGsapFadeIn';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import NavMenu from './NavMenu';
 import SideMenu from './SideMenu';
 
 export default function Navbar() {
   const [showSide, setShowSide] = useState(false);
-  const navRef = useGsapFadeIn(0.8);
+  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      gsap.fromTo(navRef.current, { opacity: 0 }, { opacity: 1, duration: 0.8 });
+    }
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <nav
       ref={navRef}
       style={{ opacity: 0 }}
-      className="w-full flex flex-col gap-5 py-7 px-[5%] items-center fixed top-0 z-50 text-white"
+      className={`w-full flex flex-col gap-5 py-5 md:py-7 px-[5%] items-center fixed top-0 z-50 text-white transition-all duration-500 ${
+        scrolled ? 'py-3 md:py-4' : ''
+      }`}
       aria-label="Main navigation"
     >
       <div className="flex md:flex-row items-center gap-10 w-full justify-between">
         <a href="/">
-          <img className="h-16 md:h-20" height={80} src="/images/ryuichi oshimoto white.png" alt="Ryuichi Oshimoto" />
+          <img
+            className={`transition-all duration-500 ${scrolled ? 'h-10 md:h-12' : 'h-16 md:h-20'}`}
+            height={80}
+            src="/images/ryuichi oshimoto white.png"
+            alt="Ryuichi Oshimoto"
+          />
         </a>
         <button
           onClick={() => setShowSide(!showSide)}

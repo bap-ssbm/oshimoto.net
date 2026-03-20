@@ -45,7 +45,7 @@ export default function HomepageImage({ children, imgURL, linkTo }: HomepageImag
           <div className="overflow-hidden">
             <div className="hover:scale-110 hover:brightness-50 relative h-auto duration-[4000ms] ease-in">
               <div className="pointer-events-none">
-                <img loading="eager" width={1400} height={200} src={imgURL} alt="" />
+                <img loading="eager" width={1400} height={200} src={imgURL} alt={typeof children === 'string' ? children : ''} />
               </div>
             </div>
           </div>

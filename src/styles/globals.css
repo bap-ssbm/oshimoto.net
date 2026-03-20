@@ -33,6 +33,10 @@
   --color-black-400: #929292;
   --color-cream: #e8e0d4;
   --color-warm-gray: #a09888;
+  --color-gold: #c9a96e;
+
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 html.lenis, html.lenis body {
@@ -59,7 +63,7 @@ video::-webkit-media-controls {
   height: 200%;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
+  z-index: 50;
   opacity: 0.5;
 }
 
@@ -93,7 +97,7 @@ video::-webkit-media-controls {
   scale: 0;
   height: 1px;
   background-color: var(--color-cream);
-  transition: scale 0.5s ease-in;
+  transition: scale 0.6s var(--ease-expo-out);
 }
 .active-underline {
   position: relative;
@@ -105,38 +109,38 @@ video::-webkit-media-controls {
   bottom: -10px;
   width: 100%;
   height: 1px;
-  background-color: var(--color-cream);
+  background-color: var(--color-gold);
 }
 .underline-hover-effect:hover::before {
   scale: 1;
 }
 
-/* ── Hero button animation ── */
+/* ── Hero CTA link animation ── */
 .hero .btnAnimation {
   position: relative;
   z-index: 1;
-  transition: 1s ease;
-  letter-spacing: 0.2em;
+  transition: color 0.4s var(--ease-expo-out);
+  letter-spacing: 0.25em;
 }
 .hero .btnAnimation::after {
   content: '';
-  background-color: var(--color-cream);
   position: absolute;
   left: 0;
-  top: 0;
-  transform: scaleX(0);
+  bottom: -2px;
   width: 100%;
-  height: 100%;
-  transform-origin: left;
-  transition: 1s ease;
-  z-index: -1;
+  height: 1px;
+  background-color: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-expo-out);
 }
 @media (min-width: 768px) {
   .hero .btnAnimation:hover {
-    color: #0a0a0c;
+    color: var(--color-gold);
   }
   .hero .btnAnimation:hover::after {
     transform: scaleX(1);
+    transform-origin: left;
   }
 }
 
@@ -158,11 +162,11 @@ video::-webkit-media-controls {
 
 /* ── Social icons hover ── */
 .socialIcons .hoverAnimation {
-  transition: .5s ease;
+  transition: color 0.4s var(--ease-expo-out);
 }
 @media (min-width: 768px) {
   .socialIcons .hoverAnimation:hover {
-    color: var(--color-cream);
+    color: var(--color-gold);
   }
 }
 
@@ -216,22 +220,24 @@ video::-webkit-media-controls {
 .showcase-item {
   position: relative;
   overflow: hidden;
+  cursor: none;
 }
 .showcase-item::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, rgba(10,10,12,0.8) 100%);
+  background: linear-gradient(to bottom, transparent 30%, rgba(10,10,12,0.85) 100%);
   z-index: 1;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.8s ease;
 }
 .showcase-item img {
-  transition: transform 4s ease, filter 1.5s ease;
+  transition: transform 8s var(--ease-expo-out), filter 1.2s var(--ease-expo-out);
+  filter: grayscale(0.3) sepia(0.12);
 }
 @media (min-width: 768px) {
   .showcase-item:hover img {
-    transform: scale(1.08);
-    filter: sepia(0.15);
+    transform: scale(1.06);
+    filter: grayscale(0) sepia(0.08);
   }
 }
 
@@ -251,8 +257,10 @@ video::-webkit-media-controls {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.marquee-track {
-  animation: marquee 30s linear infinite;
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
 }
 
 /* ── Year counter styling ── */
@@ -263,4 +271,14 @@ video::-webkit-media-controls {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--color-warm-gray);
+}
+
+/* ── Horizontal scroll section ── */
+.hscroll-section {
+  position: relative;
+}
+
+/* ── Scroll progress ── */
+#scroll-progress {
+  will-change: transform;
 }

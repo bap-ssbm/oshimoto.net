@@ -1,0 +1,78 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const services = [
+  { number: '01', title: 'Portraits', desc: 'Editorial and personal portraits that capture character and presence.', jp: '人物撮影' },
+  { number: '02', title: 'Landscape', desc: 'North American and Japanese landscapes — the sights encountered in travels.', jp: '風景写真' },
+  { number: '03', title: 'Commercial', desc: 'Product, architecture, and brand photography for publications and campaigns.', jp: '商業撮影' },
+  { number: '04', title: 'Events', desc: 'Live coverage of exhibitions, performances, and cultural events.', jp: 'イベント' },
+];
+---
+
+<section class="py-[120px] md:py-[200px]" data-services>
+<div class="px-[5%] md:px-[12%] max-w-[1200px] mx-auto">
+  <div class="flex flex-col md:flex-row gap-16 md:gap-0">
+    <!-- Left: heading (sticky on desktop) -->
+    <div class="md:w-[35%] md:sticky md:top-[200px] md:self-start">
+      <SectionHeading jpLabel="専門" enTitle="Services" />
+      <p class="text-[14px] text-[--color-cream]/40 leading-[1.9] mt-10 max-w-[280px]">
+        Based in Los Angeles and Hayama, Japan. Available for assignments worldwide.
+      </p>
+      <a href="/contact" class="inline-flex items-center gap-3 mt-8 text-[11px] tracking-[0.25em] uppercase text-[--color-gold]/60 hover:text-[--color-gold] transition-colors duration-500">
+        Discuss a project
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Right: service list -->
+    <div class="md:w-[65%]">
+      {services.map((svc) => (
+        <div class="service-item group relative flex flex-col md:flex-row gap-4 md:gap-8 py-10 md:py-14 border-t border-[--color-warm-gray]/[0.08] md:items-center" style="opacity: 0;">
+          <span class="font-anonymous-pro text-[11px] text-[--color-gold]/40 tracking-[0.1em] md:w-[50px] flex-shrink-0 transition-all duration-500 md:group-hover:text-[--color-gold]/70 w-8 h-8 md:w-10 md:h-10 rounded-full border border-[--color-warm-gray]/10 md:group-hover:border-[--color-gold]/30 flex items-center justify-center">
+            {svc.number}
+          </span>
+          <div class="flex-1">
+            <div class="flex items-baseline gap-4 mb-3">
+              <h3 class="font-cormorant text-[24px] md:text-[32px] font-light tracking-[-0.01em] leading-[1.1] transition-[letter-spacing] duration-700 md:group-hover:tracking-[0.02em]">
+                {svc.title}
+              </h3>
+              <span class="font-noto-serif-jp text-[10px] tracking-[0.3em] text-[--color-warm-gray]/20 group-hover:text-[--color-warm-gray]/40 transition-colors duration-700 italic hidden md:inline">
+                {svc.jp}
+              </span>
+            </div>
+            <p class="text-[14px] text-[--color-cream]/40 leading-[1.8] max-w-[400px]">
+              {svc.desc}
+            </p>
+          </div>
+          <div class="absolute bottom-0 left-0 h-px bg-[--color-gold]/30 w-0 group-hover:w-full transition-all duration-700" style="transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);"></div>
+        </div>
+      ))}
+      <div class="border-t border-[--color-warm-gray]/[0.08]"></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.service-item').forEach((item, i) => {
+    gsap.fromTo(item,
+      { opacity: 0, y: prefersReduced ? 0 : 25 },
+      {
+        opacity: 1, y: 0,
+        duration: prefersReduced ? 0.3 : 0.8,
+        delay: prefersReduced ? 0 : i * 0.12,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: item, start: 'top 88%', once: true },
+      }
+    );
+  });
+</script>

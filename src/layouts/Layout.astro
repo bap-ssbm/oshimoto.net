@@ -2,6 +2,8 @@
 import '../styles/globals.css';
 import Navbar from '../components/ui/navbar/Navbar';
 import Footer from '../components/ui/Footer.astro';
+import Preloader from '../components/ui/Preloader.astro';
+import CustomCursor from '../components/ui/CustomCursor.astro';
 import { SITE } from '../data/site-config';
 
 interface Props {
@@ -44,6 +46,12 @@ const canonicalURL = canonicalPath ? new URL(canonicalPath, SITE.url).toString()
     <title>{title}</title>
   </head>
   <body class="text-cream text-[15px] bg-black-950 font-brandon-grotesque antialiased">
+    <Preloader />
+    <CustomCursor />
+
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-px bg-gold/60 z-[9990] origin-left" style="width: 100%; transform: scaleX(0);"></div>
+
     <Navbar client:load />
     <slot />
     <Footer />
@@ -70,6 +78,21 @@ const canonicalURL = canonicalPath ? new URL(canonicalPath, SITE.url).toString()
           lenis.raf(time * 1000);
         });
         gsap.ticker.lagSmoothing(0);
+      }
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) {
+        gsap.to(progressBar, {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: document.body,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.3,
+          },
+        });
       }
     </script>
   </body>

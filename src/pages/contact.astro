@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContactImg from '../components/contact/ContactImg.astro';
 import Form from '../components/contact/Form';
-import { SITE } from '../data/site-config';
+import { SITE, CONTACT_IMAGE } from '../data/site-config';
 ---
 
 <Layout
@@ -10,16 +9,62 @@ import { SITE } from '../data/site-config';
   description="Get in touch with photographer Ryuichi Oshimoto for inquiries and collaborations."
   canonicalPath="/contact"
 >
-  <div class="px-[5%] md:px-[6%] pt-[180px] md:pt-[220px] md:flex-row flex-col flex gap-20 max-w-[1300px] min-h-[60vh] mx-auto">
-    <ContactImg />
-    <div class="flex-1 flex flex-col order-2">
-      <p class="font-noto-serif-jp text-[11px] tracking-[0.4em] text-[--color-warm-gray] mb-3">連絡</p>
-      <h1 class="font-cormorant text-[36px] md:text-[48px] font-light tracking-[0.04em] leading-[1.1] mb-4">Get in Touch</h1>
-      <div class="w-12 h-px bg-[--color-warm-gray]/40 mb-12"></div>
-      <Form client:load />
-      <p class="text-[13px] mt-10 mb-10 text-[--color-warm-gray]">
-        or email me at <a href={`mailto:${SITE.email}`} class="text-[--color-cream] hover:underline transition-colors duration-300">{SITE.email}</a>
-      </p>
+  <!-- Full-height split screen -->
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Left: Image (fixed on desktop) -->
+    <div class="relative md:w-[45%] md:fixed md:left-0 md:top-0 md:h-screen overflow-hidden" data-contact-hero>
+      <img
+        src={CONTACT_IMAGE}
+        alt="Ryuichi Oshimoto"
+        class="w-full h-[40vh] md:h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[--color-black-950]/40 hidden md:block"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[--color-black-950]/60 to-transparent md:hidden"></div>
+    </div>
+
+    <!-- Right: Form content (scrollable) -->
+    <div class="md:w-[55%] md:ml-[45%] px-[6%] md:px-[8%] pt-[60px] md:pt-[200px] pb-[80px] md:pb-[140px] flex flex-col justify-center min-h-screen">
+      <div class="max-w-[540px]">
+        <p class="font-noto-serif-jp text-[11px] tracking-[0.6em] text-[--color-warm-gray]/70 mb-5 italic" data-contact-jp>お仕事のご依頼</p>
+        <h1 class="font-cormorant text-[42px] md:text-[64px] font-light tracking-[-0.02em] leading-[1.0] mb-3" data-contact-title>
+          Let's Work<br />Together
+        </h1>
+        <p class="text-[13px] text-[--color-cream]/35 leading-[1.8] mb-2 max-w-[380px]" data-contact-subtitle>
+          Available for commercial, editorial, and personal projects. Based in Los Angeles and Hayama, Japan — worldwide assignments welcome.
+        </p>
+        <div class="w-12 h-px bg-[--color-gold]/40 mt-6 mb-14" data-contact-line></div>
+
+        <Form client:load />
+
+        <div class="mt-16 pt-10 border-t border-[--color-warm-gray]/[0.06]">
+          <p class="text-[10px] tracking-[0.3em] uppercase text-[--color-warm-gray]/30 mb-3">Direct email</p>
+          <a href={`mailto:${SITE.email}`} class="font-cormorant text-[18px] md:text-[22px] text-[--color-cream]/50 hover:text-[--color-gold] transition-colors duration-500">{SITE.email}</a>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  import gsap from 'gsap';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const d = (v: number) => prefersReduced ? 0.3 : v;
+
+  const hero = document.querySelector('[data-contact-hero]');
+  if (hero) {
+    gsap.set(hero, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.to(hero, { clipPath: 'inset(0 0 0% 0)', duration: d(1.6), delay: 0.1, ease: 'power4.inOut' });
+  }
+
+  const jp = document.querySelector('[data-contact-jp]');
+  const title = document.querySelector('[data-contact-title]');
+  const line = document.querySelector('[data-contact-line]');
+
+  const subtitle = document.querySelector('[data-contact-subtitle]');
+
+  if (jp) gsap.fromTo(jp, { x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: d(0.7), delay: 0.5, ease: 'power2.out' });
+  if (title) gsap.fromTo(title, { y: prefersReduced ? 0 : 50, opacity: 0, skewY: prefersReduced ? 0 : 2 }, { y: 0, opacity: 1, skewY: 0, duration: d(1), delay: 0.6, ease: 'power4.out' });
+  if (subtitle) gsap.fromTo(subtitle, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: d(0.6), delay: 0.8, ease: 'power2.out' });
+  if (line) gsap.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: d(0.8), delay: 1, ease: 'power3.inOut' });
+</script>

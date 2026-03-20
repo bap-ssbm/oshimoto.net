@@ -7,7 +7,7 @@ const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service
 const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'template_071s328';
 
 const INPUT_CLASS =
-  'bg-black border border-white opacity-50 focus:opacity-100 focus-within:opacity-95 py-2 px-4 tracking-widest text-white font-sans transition duration-300';
+  'bg-transparent border-b border-warm-gray/20 focus:border-gold/50 focus:shadow-[0_1px_8px_-3px_rgba(201,169,110,0.3)] py-3 tracking-[0.1em] text-cream/80 text-[14px] font-brandon-grotesque transition-all duration-500 outline-none placeholder:text-warm-gray/30 placeholder:tracking-[0.15em] placeholder:text-[12px] placeholder:uppercase';
 
 export default function Form() {
   const [msg, setMsg] = useState<string | null>(null);
@@ -116,11 +116,11 @@ export default function Form() {
         </div>
         <button
           type="submit"
-          className="w-fit px-7 py-3 tracking-[4px] border border-white opacity-40 hover:opacity-100 transition duration-300"
+          className="mt-4 w-fit text-[12px] tracking-[0.3em] uppercase text-warm-gray/50 hover:text-gold transition-colors duration-500 relative pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-px after:bg-gold/30 after:scale-x-0 after:origin-left after:transition-transform after:duration-500 hover:after:scale-x-100"
         >
-          {isLoading ? <BiLoaderAlt className="animate-spin" aria-label="Sending..." /> : 'SEND'}
+          {isLoading ? <BiLoaderAlt className="animate-spin" aria-label="Sending..." /> : 'Send Message'}
         </button>
-        {msg && <p className="tracking-[2px] text-[18px]" role="status">{msg}</p>}
+        {msg && <p className="tracking-[0.15em] text-[14px] text-gold/80 mt-6" role="status">{msg}</p>}
       </form>
     </>
   );

@@ -3,6 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import PortfolioNav from '../../components/portfolio/PortfolioNav.astro';
 import Portfolio from '../../components/portfolio/Portfolio';
 import { jpPics } from '../../data/portfolio-data.js';
+
+const heroImg = jpPics[0]?.src;
 ---
 
 <Layout
@@ -10,8 +12,40 @@ import { jpPics } from '../../data/portfolio-data.js';
   description="Japanese landscape photography by Ryuichi Oshimoto."
   canonicalPath="/portfolio/jp-landscape"
 >
-  <div class="pt-[100px] md:pt-[200px]">
-    <PortfolioNav />
+  <div>
+    <div class="relative h-[50vh] md:h-[70vh] overflow-hidden" data-portfolio-hero>
+      <img data-portfolio-hero-img src={heroImg} alt="" class="w-full h-[120%] object-cover" style="filter: grayscale(0.3) brightness(0.4);" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[--color-black-950] via-[--color-black-950]/30 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 px-[5%] md:px-[12%] pb-12 md:pb-20">
+        <p class="font-noto-serif-jp text-[11px] tracking-[0.6em] text-[--color-warm-gray]/70 mb-4 italic">日本風景</p>
+        <h1 class="font-cormorant text-[48px] md:text-[80px] font-light tracking-[-0.02em] leading-[1.0]">Japan</h1>
+      </div>
+    </div>
+
+    <div class="px-[5%] md:px-[12%] py-10 md:py-14">
+      <PortfolioNav />
+    </div>
+
     <Portfolio client:load imgData={jpPics} />
   </div>
 </Layout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const hero = document.querySelector('[data-portfolio-hero]');
+  const heroImg = document.querySelector('[data-portfolio-hero-img]');
+  if (hero) {
+    gsap.set(hero, { clipPath: 'inset(100% 0 0 0)' });
+    gsap.to(hero, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.inOut' });
+  }
+  if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.to(heroImg, {
+      y: '15%',
+      ease: 'none',
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
+    });
+  }
+</script>

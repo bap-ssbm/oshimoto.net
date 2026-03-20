@@ -1,4 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface GalleryProps {
   imgData: { src: string }[];
@@ -11,6 +15,7 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
   const [loadedCount, setLoadedCount] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     function handleResize() {
@@ -23,28 +28,35 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleImageLoad = useCallback(() => {
-    setLoadedCount(prev => prev + 1);
-  }, []);
+  const handleImageLoad = useCallback(() => setLoadedCount(prev => prev + 1), []);
+  const handleImageError = useCallback(() => setLoadedCount(prev => prev + 1), []);
 
-  const handleImageError = useCallback(() => {
-    setLoadedCount(prev => prev + 1);
-  }, []);
-
-  // Trigger animations once enough images loaded (first 8 or all)
   useEffect(() => {
     const threshold = Math.min(8, imgData.length);
-    if (loadedCount >= threshold && !allLoaded) {
-      setAllLoaded(true);
-    }
+    if (loadedCount >= threshold && !allLoaded) setAllLoaded(true);
   }, [loadedCount, imgData.length, allLoaded]);
 
   useEffect(() => {
-    if (!allLoaded || !containerRef.current) return;
-    // Trigger mask-image reveal by updating mask-position
-    requestAnimationFrame(() => {
-      containerRef.current!.style.maskPosition = '0% 0%';
+    if (!allLoaded) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    itemRefs.current.forEach((el) => {
+      if (!el) return;
+      const wrap = el.querySelector('.gallery-img-wrap') as HTMLElement;
+      if (wrap) {
+        gsap.fromTo(wrap,
+          { opacity: 0, y: prefersReduced ? 0 : 20 },
+          {
+            opacity: 1, y: 0,
+            duration: prefersReduced ? 0.3 : 0.8,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          }
+        );
+      }
     });
+
+    ScrollTrigger.refresh();
   }, [allLoaded]);
 
   const openImage = (i: number) => {
@@ -57,54 +69,59 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
 
   return (
     <div className="relative">
-      {/* Loading indicator */}
-      {!allLoaded && (
-        <div className="flex flex-col items-center justify-center py-20 gap-4">
-          <div className="w-48 h-px bg-warm-gray/20 relative overflow-hidden">
-            <div
-              className="h-full bg-cream/60 transition-all duration-500 ease-out"
-              style={{ width: `${progress}%` }}
-            />
+      {/* Image counter */}
+      <div className="px-[5%] md:px-[12%] mb-8 flex justify-between items-center">
+        <p className="font-anonymous-pro text-[11px] text-warm-gray/30 tracking-[0.15em]">
+          {imgData.length} photographs
+        </p>
+        {!allLoaded && (
+          <div className="flex items-center gap-3">
+            <div className="w-24 h-px bg-warm-gray/20 relative overflow-hidden">
+              <div className="h-full bg-gold/40 transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
+            </div>
+            <span className="font-anonymous-pro text-[10px] text-warm-gray/30">{progress}%</span>
           </div>
-          <p className="font-cormorant text-[13px] tracking-[0.2em] text-warm-gray/50">
-            Loading {progress}%
-          </p>
-        </div>
-      )}
+        )}
+      </div>
 
       <div
         ref={containerRef}
         style={{
           columnCount: numCol,
-          columnGap: '20px',
+          columnGap: '16px',
           opacity: allLoaded ? 1 : 0,
-          transition: 'opacity 0.3s',
-          maskImage: 'linear-gradient(130deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,0.1) 79%, rgba(255,255,255,0) 100%)',
-          maskSize: '200% 100%',
-          maskPosition: '100% 0%',
+          transition: 'opacity 0.5s',
         }}
-        className="w-full gallery-mask-reveal"
+        className="w-full px-[5%] md:px-[12%]"
       >
         {imgData.map((pic, i) => (
           <button
             key={i}
             type="button"
-className="cursor-pointer overflow-hidden mb-5 break-inside-avoid block w-full text-left"
+            ref={(el) => { itemRefs.current[i] = el; }}
+            className="group cursor-pointer overflow-hidden mb-4 break-inside-avoid block w-full text-left relative"
             onClick={() => openImage(i)}
             aria-label={`View portfolio image ${i + 1}`}
           >
             <div className="gallery-img-wrap overflow-hidden">
-              <div className="hover:scale-105 relative h-auto duration-[2000ms] ease-out hover:grayscale-[0.3]">
+              <div className="relative h-auto">
                 <img
                   height={500}
                   width={500}
                   src={pic.src}
                   loading="lazy"
                   alt=""
-                  className="w-full"
+                  className="w-full transition-transform duration-[2500ms] ease-out group-hover:scale-[1.04]"
+                  style={{ filter: 'grayscale(0.2)' }}
                   onLoad={handleImageLoad}
                   onError={handleImageError}
                 />
+                {/* Hover overlay with number */}
+                <div className="absolute inset-0 bg-black-950/0 group-hover:bg-black-950/40 transition-colors duration-500 flex items-end p-4">
+                  <span className="font-anonymous-pro text-[10px] text-cream/0 group-hover:text-cream/50 transition-colors duration-500 tracking-[0.1em]">
+                    {String(i + 1).padStart(2, '0')} / {String(imgData.length).padStart(2, '0')}
+                  </span>
+                </div>
               </div>
             </div>
           </button>

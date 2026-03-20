@@ -37,18 +37,18 @@ export default function Event({ link, date, name, place, pdf, img }: EventProps)
       </div>
 
       {/* Event content */}
-      <div className="py-6 border-t border-warm-gray/15 flex justify-between md:w-[72%] w-full flex-col md:flex-row gap-2 group-hover:border-warm-gray/30 transition-colors duration-500">
-        <p className="text-warm-gray text-[13px] tracking-[0.05em] font-cormorant md:w-[35%]">{date}</p>
+      <div className="py-8 border-t border-warm-gray/15 flex justify-between md:w-[72%] w-full flex-col md:flex-row gap-2 group-hover:border-gold/20 transition-all duration-600 md:group-hover:pl-4">
+        <p className="text-warm-gray/80 text-[12px] tracking-[0.15em] font-anonymous-pro md:w-[35%]">{date}</p>
         <div className="md:text-end">
-          <p className="font-noto-serif-jp text-[14px] md:text-[15px] text-cream/90">{name}</p>
+          <p className="font-noto-serif-jp text-[15px] md:text-[16px] text-cream/90">{name}</p>
           <p className="text-warm-gray text-[13px] mt-1">{place}</p>
           {link && (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-cream transition-colors duration-300 mt-2 inline-block">
+            <a href={link} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-gold transition-colors duration-500 mt-2 inline-block">
               Instagram →
             </a>
           )}
           {pdf && (
-            <a href={pdf} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-cream transition-colors duration-300 mt-2 inline-block ml-4">
+            <a href={pdf} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-gold transition-colors duration-500 mt-2 inline-block ml-4">
               PDF →
             </a>
           )}

@@ -44,7 +44,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
     <div
       ref={overlayRef}
       style={{ opacity: 0 }}
-      className="fixed w-full h-screen top-0 left-0 z-50 bg-black box-border grid place-items-center"
+      className="fixed w-full h-screen top-0 left-0 z-50 bg-black-950 box-border grid place-items-center"
       role="dialog"
       aria-label="Image viewer"
     >

@@ -3,8 +3,8 @@ import SectionHeading from '../ui/SectionHeading.astro';
 import Events from './Events/Events';
 ---
 
-<section id="events" class="py-[120px] md:py-[180px] px-[5%] md:px-[10%] max-w-[1200px] mx-auto">
-  <div class="mb-16 md:mb-24">
+<section id="events" class="py-[140px] md:py-[240px] px-[5%] md:px-[12%] max-w-[1200px] mx-auto">
+  <div class="mb-20 md:mb-28">
     <SectionHeading jpLabel="展覧会" enTitle="Exhibitions" />
   </div>
   <div data-events-content style="opacity: 0;">
@@ -24,9 +24,9 @@ import Events from './Events/Events';
     gsap.fromTo(content,
       { y: prefersReduced ? 0 : 30, opacity: 0 },
       { y: 0, opacity: 1,
-        duration: prefersReduced ? 0.3 : 0.8,
+        duration: prefersReduced ? 0.3 : 0.9,
         delay: prefersReduced ? 0 : 0.3,
-        ease: 'power2.out',
+        ease: 'expo.out',
         scrollTrigger: { trigger: content, start: 'top 85%', once: true } }
     );
   }

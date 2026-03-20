@@ -8,13 +8,18 @@ const { jpLabel, enTitle } = Astro.props;
 ---
 
 <div data-section-heading>
-  <p class="sect-jp font-noto-serif-jp text-[11px] md:text-[13px] tracking-[0.4em] text-[--color-warm-gray] mb-3" style="opacity: 0;">
-    {jpLabel}
-  </p>
-  <h2 class="sect-title font-cormorant text-[36px] md:text-[56px] font-light tracking-[0.04em] leading-[1.1]" style="opacity: 0;">
+  <div class="flex items-center gap-4 mb-5">
+    <span class="sect-ordinal font-anonymous-pro text-[10px] md:text-[11px] tracking-[0.15em] text-[--color-warm-gray]/25" style="opacity: 0;">
+      —
+    </span>
+    <p class="sect-jp font-noto-serif-jp text-[11px] md:text-[12px] tracking-[0.6em] text-[--color-warm-gray]/70 italic" style="opacity: 0;">
+      {jpLabel}
+    </p>
+  </div>
+  <h2 class="sect-title font-cormorant text-[40px] md:text-[72px] font-light tracking-[-0.02em] leading-[1.05]" style="opacity: 0;">
     {enTitle}
   </h2>
-  <div class="sect-line w-16 h-px bg-[--color-warm-gray]/40 mt-6 origin-left"></div>
+  <div class="sect-line w-16 h-px bg-[--color-gold]/40 mt-10 origin-left"></div>
 </div>
 
 <script>
@@ -27,28 +32,36 @@ const { jpLabel, enTitle } = Astro.props;
   const dur = (fallback: number) => prefersReduced ? 0.3 : fallback;
 
   document.querySelectorAll('[data-section-heading]').forEach((heading) => {
+    const ordinal = heading.querySelector('.sect-ordinal');
     const jp = heading.querySelector('.sect-jp');
     const title = heading.querySelector('.sect-title');
     const line = heading.querySelector('.sect-line');
 
+    if (ordinal) {
+      gsap.fromTo(ordinal,
+        { x: -10, opacity: 0 },
+        { x: 0, opacity: 1, duration: dur(0.6), ease: 'expo.out',
+          scrollTrigger: { trigger: ordinal, start: 'top 88%', once: true } }
+      );
+    }
     if (jp) {
       gsap.fromTo(jp,
         { x: 30, opacity: 0 },
-        { x: 0, opacity: 1, duration: dur(0.8), ease: 'power2.out',
+        { x: 0, opacity: 1, duration: dur(0.8), ease: 'expo.out',
           scrollTrigger: { trigger: jp, start: 'top 88%', once: true } }
       );
     }
     if (title) {
       gsap.fromTo(title,
         { y: prefersReduced ? 0 : 60, opacity: 0, skewY: prefersReduced ? 0 : 2 },
-        { y: 0, opacity: 1, skewY: 0, duration: dur(1.2), ease: 'power4.out',
+        { y: 0, opacity: 1, skewY: 0, duration: dur(1.2), ease: 'expo.out',
           scrollTrigger: { trigger: title, start: 'top 85%', once: true } }
       );
     }
     if (line) {
       gsap.fromTo(line,
         { scaleX: 0 },
-        { scaleX: 1, duration: dur(1), ease: 'power3.inOut',
+        { scaleX: 1, duration: dur(1), ease: 'expo.inOut',
           scrollTrigger: { trigger: line, start: 'top 85%', once: true } }
       );
     }

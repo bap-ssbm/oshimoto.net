@@ -6,47 +6,62 @@ const JP_LABELS = ['人物', '北米風景', '日本風景'];
 const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Documentary', 'Commercial'];
 ---
 
-<section id="showcase" class="py-[120px] md:py-[180px] relative">
-  <div class="px-[5%] md:px-[10%] mb-20 md:mb-32">
+<section id="showcase" class="py-[120px] md:py-[200px] relative">
+  <div class="px-[5%] md:px-[12%] mb-20 md:mb-28">
     <SectionHeading jpLabel="作品" enTitle="Selected Work" />
   </div>
 
-  <div class="flex flex-col gap-24 md:gap-40">
+  <div class="px-[5%] md:px-[12%] relative">
     {SHOWCASE_IMAGES.map((item, i) => (
-      <a data-showcase-item href={item.linkTo} class="group block relative">
-        <div class="showcase-number absolute -top-8 md:-top-16 right-[5%] md:right-[10%] font-cormorant text-[100px] md:text-[200px] font-light text-white/15 leading-none pointer-events-none select-none" style="opacity: 0;">
-          0{i + 1}
+      <a
+        data-showcase-row
+        href={item.linkTo}
+        class="group relative block border-t border-[--color-warm-gray]/[0.08] overflow-hidden"
+      >
+        {/* Background image — hidden by default, reveals on hover */}
+        <div
+          class="showcase-row-img absolute inset-0 z-0 overflow-hidden"
+          data-img-src={item.imgURL}
+        >
+          <img
+            src={item.imgURL}
+            alt=""
+            class="w-full h-full object-cover will-change-transform"
+            style="scale: 1.1; filter: grayscale(0.3) brightness(0.4);"
+            loading="lazy"
+          />
         </div>
-        <div class={`showcase-item relative ${i % 2 === 0 ? 'ml-[5%] md:ml-[10%] mr-[5%] md:mr-[20%]' : 'ml-[5%] md:ml-[20%] mr-[5%] md:mr-[10%]'}`}>
-          <div class="showcase-img-wrapper overflow-hidden">
-            <img
-              src={item.imgURL}
-              alt={`${item.label} photography collection`}
-              class="w-full h-[50vh] md:h-[70vh] object-cover will-change-transform"
-              loading="lazy"
-            />
-          </div>
-          <div class="showcase-text absolute bottom-0 left-0 z-10 p-6 md:p-12">
-            <p class="font-noto-serif-jp text-[11px] tracking-[0.3em] text-[--color-cream]/50 mb-2">
-              {JP_LABELS[i] ?? ''}
-            </p>
-            <h3 class="font-cormorant text-[28px] md:text-[42px] font-light tracking-[0.06em] mb-3">
+
+        {/* Content row */}
+        <div class="relative z-10 flex items-center py-10 md:py-16">
+          {/* Number */}
+          <span class="font-anonymous-pro text-[12px] md:text-[14px] text-[--color-warm-gray]/30 group-hover:text-[--color-gold]/60 transition-colors duration-700 tracking-[0.1em] w-[60px] md:w-[80px] flex-shrink-0">
+            0{i + 1}
+          </span>
+
+          {/* Title — large, with italic hover */}
+          <div class="flex-1">
+            <h3 class="font-cormorant text-[36px] md:text-[72px] lg:text-[90px] font-light tracking-[-0.03em] leading-[1.0] group-hover:tracking-[0.02em] transition-all duration-700">
               {item.label}
             </h3>
-            <span class="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-[--color-cream]/60 group-hover:text-[--color-cream] transition-colors duration-500">
-              Explore
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-              </svg>
+          </div>
+
+          {/* JP label */}
+          <div class="flex-shrink-0 flex items-center gap-6">
+            <span class="hidden md:block font-noto-serif-jp text-[11px] tracking-[0.4em] text-[--color-warm-gray]/40 group-hover:text-[--color-cream]/60 transition-colors duration-700 italic">
+              {JP_LABELS[i]}
             </span>
           </div>
         </div>
       </a>
     ))}
+    {/* Bottom border */}
+    <div class="border-t border-[--color-warm-gray]/[0.08]"></div>
   </div>
 
-  <div data-showcase-marquee class="mt-24 md:mt-40 overflow-hidden border-y border-[--color-warm-gray]/10 py-4" style="opacity: 0;">
-    <div class="marquee-track flex whitespace-nowrap gap-16 text-[12px] md:text-[14px] tracking-[0.3em] uppercase text-[--color-warm-gray]/30 font-cormorant">
+  {/* Marquee */}
+  <div data-showcase-marquee class="mt-[100px] md:mt-[160px] overflow-hidden border-y border-[--color-warm-gray]/[0.06] py-5" style="opacity: 0;">
+    <div class="marquee-track flex whitespace-nowrap gap-16 text-[12px] md:text-[14px] tracking-[0.3em] uppercase text-[--color-warm-gray]/35 font-anonymous-pro">
       {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((text, i) => (
         <span>{i > 0 ? <>&nbsp;·&nbsp;&nbsp;{text}</> : text}</span>
       ))}
@@ -63,55 +78,42 @@ const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Docum
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const dur = (fallback: number) => prefersReduced ? 0.3 : fallback;
 
-  document.querySelectorAll('[data-showcase-item]').forEach((el) => {
-    const imgWrapper = el.querySelector('.showcase-img-wrapper') as HTMLElement;
-    const img = el.querySelector('img');
-    const text = el.querySelector('.showcase-text');
-    const number = el.querySelector('.showcase-number');
+  // Row entrance animations
+  document.querySelectorAll('[data-showcase-row]').forEach((row, i) => {
+    gsap.fromTo(row,
+      { opacity: 0, y: prefersReduced ? 0 : 30 },
+      {
+        opacity: 1, y: 0,
+        duration: dur(0.9),
+        delay: prefersReduced ? 0 : i * 0.15,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: row, start: 'top 88%', once: true },
+      }
+    );
 
-    if (imgWrapper) {
-      gsap.set(imgWrapper, { clipPath: 'inset(0 100% 0 0)' });
-      gsap.to(imgWrapper, {
-        clipPath: 'inset(0 0% 0 0)',
-        duration: dur(1.4),
-        ease: 'power4.inOut',
-        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
+    // Background image — subtle scale on hover
+    const imgBg = row.querySelector('.showcase-row-img') as HTMLElement;
+    if (imgBg) {
+      const img = imgBg.querySelector('img')!;
+
+      row.addEventListener('mouseenter', () => {
+        gsap.killTweensOf(img);
+        gsap.to(img, { scale: 1.15, duration: 4, ease: 'expo.out' });
       });
-    }
 
-    if (img && !prefersReduced) {
-      gsap.set(img, { scale: 1.15 });
-      gsap.fromTo(img,
-        { y: 40 },
-        { y: -40, ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 2 } }
-      );
-    }
-
-    if (text) {
-      gsap.fromTo(text,
-        { clipPath: 'inset(100% 0 0 0)', y: 20 },
-        { clipPath: 'inset(0% 0 0 0)', y: 0,
-          duration: dur(0.9), delay: prefersReduced ? 0 : 0.9, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 75%', once: true } }
-      );
-    }
-
-    if (number) {
-      gsap.fromTo(number,
-        { opacity: 0, y: 30, skewY: 5 },
-        { opacity: 0.15, y: 0, skewY: 0,
-          duration: dur(0.8), delay: 0.2, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 80%', once: true } }
-      );
+      row.addEventListener('mouseleave', () => {
+        gsap.killTweensOf(img);
+        gsap.to(img, { scale: 1.1, duration: 1.2, ease: 'power2.out' });
+      });
     }
   });
 
+  // Marquee
   const marquee = document.querySelector('[data-showcase-marquee]');
   if (marquee) {
     gsap.fromTo(marquee,
       { opacity: 0 },
-      { opacity: 1, duration: 1,
+      { opacity: 1, duration: 1.2, ease: 'expo.out',
         scrollTrigger: { trigger: marquee, start: 'top 90%', once: true } }
     );
   }

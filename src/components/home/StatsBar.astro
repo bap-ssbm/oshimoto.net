@@ -1,0 +1,71 @@
+---
+const yearsActive = new Date().getFullYear() - 1984;
+
+const stats = [
+  { value: yearsActive.toString(), label: 'Years Active', suffix: '+' },
+  { value: '4', label: 'Solo Exhibitions', suffix: '' },
+  { value: '2', label: 'Countries', suffix: '' },
+  { value: '1984', label: 'Est.', suffix: '' },
+];
+---
+
+<section class="py-16 md:py-24 border-y border-[--color-warm-gray]/[0.06]" data-stats-bar>
+  <div class="px-[5%] md:px-[12%] flex flex-wrap justify-between gap-10 md:gap-0 max-w-[1200px] mx-auto">
+    {stats.map((stat) => (
+      <div class="flex flex-col items-center text-center min-w-[100px] stat-item" style="opacity: 0;">
+        <span class="font-cormorant text-[40px] md:text-[56px] font-light leading-none text-[--color-cream]/40" data-stat-value={stat.value} data-stat-suffix={stat.suffix}>
+          {stat.value}{stat.suffix}
+        </span>
+        <span class="font-anonymous-pro text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[--color-warm-gray]/50 mt-3">
+          {stat.label}
+        </span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.stat-item').forEach((item, i) => {
+    const valueEl = item.querySelector('[data-stat-value]') as HTMLElement;
+    const targetValue = valueEl?.dataset.statValue || '';
+    const suffix = valueEl?.dataset.statSuffix || '';
+    const numericValue = parseInt(targetValue, 10);
+    const isNumeric = !isNaN(numericValue) && numericValue > 4;
+
+    gsap.fromTo(item,
+      { opacity: 0, y: prefersReduced ? 0 : 20 },
+      {
+        opacity: 1, y: 0,
+        duration: prefersReduced ? 0.3 : 0.8,
+        delay: prefersReduced ? 0 : i * 0.12,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          once: true,
+          onEnter: () => {
+            if (isNumeric && valueEl && !prefersReduced) {
+              const counter = { val: 0 };
+              gsap.to(counter, {
+                val: numericValue,
+                duration: 1.8,
+                delay: i * 0.12,
+                ease: 'expo.out',
+                onUpdate: () => {
+                  valueEl.textContent = Math.round(counter.val) + suffix;
+                },
+              });
+            }
+          },
+        },
+      }
+    );
+  });
+</script>
