@@ -1,40 +1,68 @@
 ---
+import { CONTACT_IMAGE } from '../../data/site-config';
 ---
 
-<section class="py-[160px] md:py-[280px] px-[5%] md:px-[12%] relative overflow-hidden" data-cta-section>
-  <!-- Ambient glow -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold/[0.05] blur-[150px]"></div>
-  </div>
+<section class="relative overflow-hidden" data-cta-section>
+  <!-- Full-width split layout -->
+  <div class="flex flex-col md:flex-row min-h-[80vh]">
+    <!-- Left: Image -->
+    <div class="md:w-[45%] relative overflow-hidden h-[50vh] md:h-auto" data-cta-img>
+      <img
+        src={CONTACT_IMAGE}
+        alt=""
+        class="w-full h-[120%] object-cover"
+        style="filter: grayscale(0.2) sepia(0.08) brightness(0.7);"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black-950/80 hidden md:block"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black-950/90 md:hidden"></div>
+    </div>
 
-  <div class="max-w-[900px] mx-auto text-center relative z-10">
-    <p data-cta-el class="font-noto-serif-jp text-[11px] md:text-[12px] tracking-[0.6em] text-warm-gray/50 italic mb-6" style="opacity: 0;">
-      お問い合わせ
-    </p>
+    <!-- Right: Content -->
+    <div class="md:w-[55%] flex items-center px-[8%] md:px-[6%] py-[80px] md:py-[120px] relative">
+      <!-- Ambient glow behind text -->
+      <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/[0.04] blur-[120px] pointer-events-none"></div>
 
-    <h2 data-cta-el class="font-cormorant text-[40px] md:text-[80px] lg:text-[100px] font-light tracking-[-0.03em] leading-[1.05]" style="opacity: 0;">
-      Let's Create<br />Together
-    </h2>
+      <div class="relative z-10 max-w-[520px]">
+        <p data-cta-el class="font-anonymous-pro text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-gold/50 mb-8" style="opacity: 0;">
+          Next Chapter
+        </p>
 
-    <div data-cta-el class="w-16 h-px bg-gold/40 mx-auto mt-10 mb-12 origin-center" style="opacity: 0;"></div>
+        <h2 data-cta-heading class="font-cormorant text-[36px] md:text-[56px] lg:text-[72px] font-light tracking-[-0.02em] leading-[1.1] mb-6">
+          <span class="block overflow-hidden py-[0.15em]"><span class="cta-line inline-block" style="transform: translateY(110%);">Your Story,</span></span>
+          <span class="block overflow-hidden py-[0.15em]"><span class="cta-line inline-block" style="transform: translateY(110%);">Through My Lens</span></span>
+        </h2>
 
-    <p data-cta-el class="text-[14px] md:text-[15px] text-cream/40 leading-[1.9] max-w-[480px] mx-auto mb-14" style="opacity: 0;">
-      Whether it's a portrait session, landscape expedition, or commercial project — let's bring your vision to life.
-    </p>
+        <div data-cta-el class="w-12 h-px bg-gold/40 mb-8 origin-left" style="opacity: 0;"></div>
 
-    <div data-cta-el style="opacity: 0;">
-      <a
-        href="/contact"
-        class="group relative inline-flex items-center gap-4 px-10 py-5 border border-warm-gray/15 hover:border-gold/40 transition-all duration-700 overflow-hidden"
-      >
-        <span class="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.06] transition-colors duration-700"></span>
-        <span class="relative text-[12px] md:text-[13px] tracking-[0.3em] uppercase font-brandon-grotesque text-cream/80 group-hover:text-gold transition-colors duration-500">
-          Start a Conversation
-        </span>
-        <svg class="relative w-5 h-5 text-cream/40 group-hover:text-gold group-hover:translate-x-1 transition-all duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-        </svg>
-      </a>
+        <p data-cta-el class="text-[14px] md:text-[15px] text-cream/40 leading-[1.9] mb-4" style="opacity: 0;">
+          Every photograph begins with a conversation.
+        </p>
+        <p data-cta-el class="font-noto-serif-jp text-[12px] md:text-[13px] text-warm-gray/30 leading-[2] mb-12" style="opacity: 0;">
+          撮影のご相談、お気軽にどうぞ。
+        </p>
+
+        <div data-cta-el class="flex flex-col sm:flex-row items-start gap-6" style="opacity: 0;">
+          <a
+            href="/contact"
+            class="group relative inline-flex items-center gap-4 px-8 py-4 border border-warm-gray/15 hover:border-gold/40 transition-all duration-700 overflow-hidden"
+          >
+            <span class="absolute inset-0 bg-gold/0 group-hover:bg-gold/[0.06] transition-colors duration-700"></span>
+            <span class="relative text-[11px] md:text-[12px] tracking-[0.3em] uppercase font-brandon-grotesque text-cream/80 group-hover:text-gold transition-colors duration-500">
+              Inquire
+            </span>
+            <svg class="relative w-4 h-4 text-cream/40 group-hover:text-gold group-hover:translate-x-1 transition-all duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/portfolio/portraits"
+            class="text-[11px] tracking-[0.2em] uppercase text-warm-gray/40 hover:text-cream/70 transition-colors duration-500 py-4"
+          >
+            View Portfolio →
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -49,16 +77,46 @@
   const section = document.querySelector('[data-cta-section]');
 
   if (section) {
+    // Image parallax
+    const imgEl = section.querySelector('[data-cta-img] img') as HTMLElement;
+    if (imgEl && !prefersReduced) {
+      gsap.to(imgEl, {
+        y: '15%',
+        ease: 'none',
+        scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
+      });
+    }
+
+    // Heading line-by-line reveal
+    const heading = section.querySelector('[data-cta-heading]');
+    if (heading) {
+      const lines = heading.querySelectorAll('.cta-line');
+      if (prefersReduced) {
+        lines.forEach(l => gsap.set(l, { y: 0 }));
+      } else {
+        lines.forEach((line, i) => {
+          gsap.to(line, {
+            y: 0,
+            duration: 1.2,
+            delay: i * 0.15,
+            ease: 'expo.out',
+            scrollTrigger: { trigger: heading, start: 'top 85%', once: true },
+          });
+        });
+      }
+    }
+
+    // Other elements staggered fade
     const elements = section.querySelectorAll('[data-cta-el]');
     elements.forEach((el, i) => {
       gsap.fromTo(el,
-        { y: prefersReduced ? 0 : 40, opacity: 0 },
+        { y: prefersReduced ? 0 : 30, opacity: 0 },
         {
           y: 0, opacity: 1,
           duration: prefersReduced ? 0.3 : 1,
           delay: prefersReduced ? 0 : i * 0.12,
           ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         }
       );
     });

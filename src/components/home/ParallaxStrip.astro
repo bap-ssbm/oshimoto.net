@@ -9,11 +9,11 @@ const images = [
   'https://lh3.googleusercontent.com/EKWWaO45EUx6UJxYdIj-o2-4H9l3uYA_licguOPYr6IWR_DLe4WUP4W-h50kvMvjU9n3fhJ73AI6GQqaY3R9a0aliPuaatdw8VZ795dXBGshI0nQhPMr53wk8vJ7AniWECynF0mwZw=w2400',
 ];
 
-// Alternating heights for visual rhythm
 const heights = ['55vh', '40vh', '60vh', '45vh', '55vh', '42vh', '58vh'];
 const spHeights = ['45vh', '35vh', '50vh', '38vh', '45vh', '36vh', '48vh'];
 const widths = ['32vw', '24vw', '28vw', '22vw', '30vw', '26vw', '28vw'];
 const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
+const yOffsets = [20, -15, 25, -10, 18, -22, 15];
 ---
 
 <section class="hscroll-section relative" data-hscroll>
@@ -21,27 +21,31 @@ const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
     <div class="hscroll-track flex gap-6 md:gap-8 pl-[10vw]" data-hscroll-track>
       {images.map((src, i) => (
         <div
-          class="hscroll-slide flex-shrink-0 overflow-hidden relative group"
+          class="hscroll-slide flex-shrink-0 overflow-hidden relative"
           data-sp-width={spWidths[i]}
           data-sp-height={spHeights[i]}
-          data-pc-width={widths[i]}
-          data-pc-height={heights[i]}
-          style={`width: ${widths[i]}; height: ${heights[i]};`}
+          data-y-offset={yOffsets[i]}
+          style={`width: ${widths[i]}; height: ${heights[i]}; transform: translateY(${yOffsets[i]}px);`}
         >
           <img
             src={src}
             alt=""
-            class="w-full h-full object-cover transition-all duration-[2000ms] ease-out group-hover:scale-[1.05]"
-            style={`filter: grayscale(0.25) sepia(0.1) brightness(0.9);`}
+            class="w-full h-full object-cover"
+            style="filter: grayscale(0.4) sepia(0.1) brightness(0.85); transform: scale(1.1);"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-black-950/10 group-hover:bg-black-950/0 transition-colors duration-700"></div>
+          <div class="absolute inset-0 bg-black-950/15"></div>
+          <span class="absolute bottom-4 right-4 font-anonymous-pro text-[10px] text-cream/0 tracking-[0.1em]" data-slide-num>
+            {String(i + 1).padStart(2, '0')}
+          </span>
         </div>
       ))}
-      {/* Spacer to allow last image to center */}
       <div class="flex-shrink-0 w-[10vw]"></div>
     </div>
   </div>
+
+  <!-- Edge vignette -->
+  <div class="absolute inset-0 pointer-events-none z-10 bg-gradient-to-r from-black-950 via-transparent to-black-950" style="opacity: 0.5;"></div>
 </section>
 
 <script>
@@ -57,7 +61,6 @@ const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
   const track = document.querySelector('[data-hscroll-track]') as HTMLElement;
 
   if (section && track) {
-    // Apply responsive sizes on mobile
     if (isMobile) {
       track.querySelectorAll('.hscroll-slide').forEach((slide) => {
         const el = slide as HTMLElement;
@@ -67,7 +70,6 @@ const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
     }
 
     if (prefersReduced) {
-      // Reduced-motion: simple horizontal scroll container
       section.style.overflow = 'auto';
       const pin = section.querySelector('.hscroll-pin') as HTMLElement;
       if (pin) {
@@ -77,10 +79,14 @@ const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
         pin.style.paddingBottom = '3rem';
       }
       track.style.paddingRight = '5vw';
+      // Show images without filters
+      track.querySelectorAll('.hscroll-slide img').forEach((img) => {
+        (img as HTMLElement).style.filter = 'none';
+      });
     } else {
-      // Pinned horizontal scroll (both desktop and mobile)
       const totalScroll = track.scrollWidth - window.innerWidth;
 
+      // Single clean horizontal scroll — tighter scrub for responsiveness
       gsap.to(track, {
         x: -totalScroll,
         ease: 'none',
@@ -88,30 +94,36 @@ const spWidths = ['65vw', '50vw', '58vw', '48vw', '62vw', '52vw', '56vw'];
           trigger: section,
           start: 'top top',
           end: () => `+=${totalScroll}`,
-          scrub: isMobile ? 0.5 : 1,
+          scrub: 0.3,
           pin: true,
           anticipatePin: 1,
-        },
-      });
+          onUpdate: (self) => {
+            // Colorize images as they pass through center viewport
+            const slides = track.querySelectorAll('.hscroll-slide');
+            const viewCenter = window.innerWidth / 2;
 
-      // Parallax: each slide moves at a slightly different rate
-      const slides = track.querySelectorAll('.hscroll-slide');
-      const parallaxScale = isMobile ? 0.5 : 1;
-      slides.forEach((slide, i) => {
-        const speed = (i % 2 === 0 ? 30 : -20) * parallaxScale;
-        gsap.fromTo(slide,
-          { y: speed },
-          {
-            y: -speed,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: () => `+=${totalScroll}`,
-              scrub: isMobile ? 0.5 : 1,
-            },
-          }
-        );
+            slides.forEach((slide) => {
+              const rect = slide.getBoundingClientRect();
+              const slideCenter = rect.left + rect.width / 2;
+              const distFromCenter = Math.abs(slideCenter - viewCenter);
+              const maxDist = window.innerWidth * 0.6;
+              const progress = Math.max(0, 1 - distFromCenter / maxDist);
+
+              const img = slide.querySelector('img') as HTMLElement;
+              const num = slide.querySelector('[data-slide-num]') as HTMLElement;
+              if (img) {
+                const gray = 0.4 - progress * 0.4;
+                const bright = 0.85 + progress * 0.15;
+                const sepia = 0.1 - progress * 0.1;
+                img.style.filter = `grayscale(${gray}) sepia(${sepia}) brightness(${bright})`;
+                img.style.transform = `scale(${1.1 - progress * 0.05})`;
+              }
+              if (num) {
+                num.style.color = `rgba(232, 224, 212, ${progress * 0.4})`;
+              }
+            });
+          },
+        },
       });
     }
   }

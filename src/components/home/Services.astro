@@ -64,15 +64,17 @@ const services = [
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.querySelectorAll('.service-item').forEach((item, i) => {
-    gsap.fromTo(item,
-      { opacity: 0, y: prefersReduced ? 0 : 25 },
-      {
-        opacity: 1, y: 0,
-        duration: prefersReduced ? 0.3 : 0.8,
-        delay: prefersReduced ? 0 : i * 0.12,
+    if (prefersReduced) {
+      gsap.fromTo(item, { opacity: 0 }, { opacity: 1, duration: 0.3, scrollTrigger: { trigger: item, start: 'top 88%', once: true } });
+    } else {
+      gsap.set(item, { clipPath: 'inset(0 100% 0 0)' });
+      gsap.to(item, {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 1.2,
+        delay: i * 0.15,
         ease: 'expo.out',
         scrollTrigger: { trigger: item, start: 'top 88%', once: true },
-      }
-    );
+      });
+    }
   });
 </script>

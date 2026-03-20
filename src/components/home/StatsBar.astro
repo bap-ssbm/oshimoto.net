@@ -40,11 +40,11 @@ const stats = [
     const isNumeric = !isNaN(numericValue) && numericValue > 4;
 
     gsap.fromTo(item,
-      { opacity: 0, y: prefersReduced ? 0 : 20 },
+      { opacity: 0, scale: prefersReduced ? 1 : 0.6, filter: prefersReduced ? 'none' : 'blur(8px)' },
       {
-        opacity: 1, y: 0,
-        duration: prefersReduced ? 0.3 : 0.8,
-        delay: prefersReduced ? 0 : i * 0.12,
+        opacity: 1, scale: 1, filter: 'blur(0px)',
+        duration: prefersReduced ? 0.3 : 1,
+        delay: prefersReduced ? 0 : i * 0.15,
         ease: 'expo.out',
         scrollTrigger: {
           trigger: item,
