@@ -1,0 +1,33 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Events from './Events/Events';
+---
+
+<section id="events" class="py-[120px] md:py-[180px] px-[5%] md:px-[10%] max-w-[1200px] mx-auto">
+  <div class="mb-16 md:mb-24">
+    <SectionHeading jpLabel="展覧会" enTitle="Exhibitions" />
+  </div>
+  <div data-events-content style="opacity: 0;">
+    <Events client:visible />
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const content = document.querySelector('[data-events-content]');
+  if (content) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gsap.fromTo(content,
+      { y: prefersReduced ? 0 : 30, opacity: 0 },
+      { y: 0, opacity: 1,
+        duration: prefersReduced ? 0.3 : 0.8,
+        delay: prefersReduced ? 0 : 0.3,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: content, start: 'top 85%', once: true } }
+    );
+  }
+</script>

@@ -1,0 +1,80 @@
+---
+const images = [
+  { src: 'https://lh3.googleusercontent.com/e1wcy3tMi8FSRybCaV7kBaujMrGedSk0mP19R_c5jYNAO5MeFNXeUi8Rm02YLoR_SNpl-36RevwW6rjxPZVePwpZ2MCunpbT3OWEiUJymnsU5RfHEIzu4ziUyFT2ShBbag8fb_nWEQ=w2400', speed: -40, w: 'w-[55%] md:w-[30%]', h: 'h-[40vh] md:h-[55vh]', pos: 'self-start' },
+  { src: 'https://lh3.googleusercontent.com/NTPYhnXBjCXQwCIleufcheTywqgHkBCMw1JxVMT7ABkYbnHZ2hKHGW4wfNVIl0oLz4zVzkqzko_tTqhgr-izXIxBIij3q7bJjyR0AbX-Y_Rrx6L7hS7d3Ry-ds0l1qpKrxJ8g6Tfpw=w2400', speed: 60, w: 'w-[45%] md:w-[22%]', h: 'h-[30vh] md:h-[42vh]', pos: 'self-end mt-[15vh] md:mt-[20vh]' },
+  { src: 'https://lh3.googleusercontent.com/K4ZypiR7ApqcmThsI0jV8yEuWDdrfgcHdhQAANpICrAjEWKS_B_N75zutA4-Qx9RrcXv4JQrfZ0LHeRJrLIAVm5Afdpt-kbILwGkXUI1mtpgic8RoKyElpqSsQvDx2fGY2_91ciANQ=w2400', speed: -25, w: 'w-[50%] md:w-[26%]', h: 'h-[45vh] md:h-[60vh]', pos: 'self-start -mt-[5vh] md:-mt-[8vh]' },
+  { src: 'https://lh3.googleusercontent.com/TQUutEB9H2GZvBgYAMANbZV1BFg3j0sr65zJPetE961ld9mR58_uoJLb-oV0n84HfpeK-gdVZ1T7IJ9tKxwowa4MGYY8xsK2KjwLyfzG1mk-zp2jyjGxmU-aqMeaH3mtAcSGhuRbOA=w2400', speed: 50, w: 'w-[40%] md:w-[20%]', h: 'h-[28vh] md:h-[38vh]', pos: 'self-end mt-[8vh] md:mt-[12vh]' },
+];
+
+---
+
+<section class="parallax-section relative overflow-hidden py-20 md:py-32">
+
+  <!-- Scattered image grid -->
+  <div class="flex gap-3 md:gap-5 px-[3%] items-start">
+    {images.map((img, i) => (
+      <div
+        class={`parallax-scatter-item relative flex-shrink-0 overflow-hidden ${img.w} ${img.pos}`}
+        data-parallax-speed={img.speed}
+        data-index={i}
+        style="opacity: 0;"
+      >
+        <div class="overflow-hidden">
+          <img
+            src={img.src}
+            alt=""
+            class={`w-full ${img.h} object-cover will-change-transform`}
+            loading="lazy"
+            style="scale: 1.25;"
+          />
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[--color-black-950]/60 to-transparent pointer-events-none"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Edge vignette -->
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-[--color-black-950]/70 via-transparent to-[--color-black-950]/70"></div>
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-[--color-black-950] via-transparent to-[--color-black-950]" style="opacity: 0.4;"></div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Image reveal + parallax
+  document.querySelectorAll('.parallax-scatter-item').forEach((item) => {
+    const img = item.querySelector('img');
+    const speed = Number(item.getAttribute('data-parallax-speed') || 0);
+    const index = Number(item.getAttribute('data-index') || 0);
+    const isEven = index % 2 === 0;
+
+    gsap.fromTo(item,
+      { clipPath: isEven ? 'inset(0 0 100% 0)' : 'inset(100% 0 0 0)' },
+      {
+        clipPath: 'inset(0 0 0% 0)',
+        duration: prefersReduced ? 0.3 : 1.3,
+        delay: prefersReduced ? 0 : index * 0.15,
+        ease: 'power4.inOut',
+        scrollTrigger: { trigger: item, start: 'top 90%', once: true },
+        onStart: () => { (item as HTMLElement).style.opacity = '1'; },
+      }
+    );
+
+    if (img && !prefersReduced) {
+      gsap.fromTo(img,
+        { y: speed > 0 ? speed : 0 },
+        {
+          y: speed < 0 ? speed : 0,
+          ease: 'none',
+          scrollTrigger: { trigger: item, start: 'top bottom', end: 'bottom top', scrub: 1.5 },
+        }
+      );
+    }
+  });
+
+</script>

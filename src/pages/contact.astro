@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContactImg from '../components/contact/ContactImg';
+import ContactImg from '../components/contact/ContactImg.astro';
 import Form from '../components/contact/Form';
 import { SITE } from '../data/site-config';
 ---
@@ -10,13 +10,15 @@ import { SITE } from '../data/site-config';
   description="Get in touch with photographer Ryuichi Oshimoto for inquiries and collaborations."
   canonicalPath="/contact"
 >
-  <div class="px-[6%] pt-[200px] md:flex-row flex-col font-sans flex gap-20 max-w-[1400px] min-h-[60vh] mx-auto">
-    <ContactImg client:load />
+  <div class="px-[5%] md:px-[6%] pt-[180px] md:pt-[220px] md:flex-row flex-col flex gap-20 max-w-[1300px] min-h-[60vh] mx-auto">
+    <ContactImg />
     <div class="flex-1 flex flex-col order-2">
-      <h1 class="text-[25px] mb-20">Get in Touch!</h1>
+      <p class="font-noto-serif-jp text-[11px] tracking-[0.4em] text-[--color-warm-gray] mb-3">連絡</p>
+      <h1 class="font-cormorant text-[36px] md:text-[48px] font-light tracking-[0.04em] leading-[1.1] mb-4">Get in Touch</h1>
+      <div class="w-12 h-px bg-[--color-warm-gray]/40 mb-12"></div>
       <Form client:load />
-      <p class="text-lg mt-10 mb-10">
-        or email me at <a href={`mailto:${SITE.email}`} class="underline">{SITE.email}</a>
+      <p class="text-[13px] mt-10 mb-10 text-[--color-warm-gray]">
+        or email me at <a href={`mailto:${SITE.email}`} class="text-[--color-cream] hover:underline transition-colors duration-300">{SITE.email}</a>
       </p>
     </div>
   </div>

@@ -1,0 +1,22 @@
+---
+const pathName = Astro.url.pathname;
+
+const links = [
+  { href: '/portfolio/portraits', label: 'Portraits' },
+  { href: '/portfolio/na-landscape', label: 'North America' },
+  { href: '/portfolio/jp-landscape', label: 'Japan' },
+];
+---
+
+<nav class="flex w-full justify-center gap-6 flex-wrap text-[13px] tracking-[0.15em]" aria-label="Portfolio navigation">
+  {links.map((link, i) => (
+    <>
+      {i > 0 && <span class="text-[--color-warm-gray]/30">/</span>}
+      <a href={link.href}>
+        <span class={`relative ${pathName === link.href ? 'active-underline text-[--color-cream]' : 'underline-hover-effect text-[--color-cream]/60 hover:text-[--color-cream] transition-colors duration-300'}`}>
+          {link.label}
+        </span>
+      </a>
+    </>
+  ))}
+</nav>

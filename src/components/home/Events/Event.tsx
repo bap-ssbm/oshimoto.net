@@ -18,7 +18,9 @@ export default function Event({ link, date, name, place, pdf, img }: EventProps)
     if (imgRef.current) {
       gsap.to(imgRef.current, {
         opacity: showImg ? 1 : 0,
-        duration: 0.3,
+        scale: showImg ? 1 : 0.95,
+        duration: 0.4,
+        ease: 'power2.out',
       });
     }
   }, [showImg]);
@@ -27,24 +29,27 @@ export default function Event({ link, date, name, place, pdf, img }: EventProps)
     <div
       onMouseEnter={() => setShowImg(true)}
       onMouseLeave={() => setShowImg(false)}
-      className="flex justify-between hover:opacity-75 duration-200 relative"
+      className="group flex justify-between relative cursor-default"
     >
-      <div ref={imgRef} style={{ opacity: 0 }} className="w-[25%] absolute right-0 bottom-0 translate-y-[50%] pointer-events-none">
-        <img className="" src={img} alt="" width={400} height={400} />
+      {/* Hover image preview */}
+      <div ref={imgRef} style={{ opacity: 0 }} className="hidden md:block w-[22%] absolute right-0 bottom-0 translate-y-[40%] pointer-events-none z-10">
+        <img src={img} alt="" width={400} height={400} className="shadow-2xl" />
       </div>
-      <div className="py-6 border-t border-black-600 flex justify-between md:w-[70%] w-full flex-col md:flex-row">
-        <p>{date}</p>
-        <div className="text-end">
-          <p>{name}</p>
-          <p>{place}</p>
+
+      {/* Event content */}
+      <div className="py-6 border-t border-warm-gray/15 flex justify-between md:w-[72%] w-full flex-col md:flex-row gap-2 group-hover:border-warm-gray/30 transition-colors duration-500">
+        <p className="text-warm-gray text-[13px] tracking-[0.05em] font-cormorant md:w-[35%]">{date}</p>
+        <div className="md:text-end">
+          <p className="font-noto-serif-jp text-[14px] md:text-[15px] text-cream/90">{name}</p>
+          <p className="text-warm-gray text-[13px] mt-1">{place}</p>
           {link && (
-            <a href={link} target="_blank" rel="noopener noreferrer">
-              Check instagram
+            <a href={link} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-cream transition-colors duration-300 mt-2 inline-block">
+              Instagram →
             </a>
           )}
           {pdf && (
-            <a href={pdf} target="_blank" rel="noopener noreferrer">
-              Download PDF
+            <a href={pdf} target="_blank" rel="noopener noreferrer" className="text-[12px] tracking-[0.15em] uppercase text-cream/40 hover:text-cream transition-colors duration-300 mt-2 inline-block ml-4">
+              PDF →
             </a>
           )}
         </div>

@@ -1,0 +1,97 @@
+---
+import HeroVideo from './HeroVideo.astro';
+import SocialIcons from '../ui/SocialIcons.astro';
+
+const yearsActive = new Date().getFullYear() - 1984;
+---
+
+<div class="hero min-h-screen relative">
+  <div class="relative">
+    <HeroVideo />
+    <div class="absolute inset-0 bg-gradient-to-b from-[--color-black-950]/60 via-[--color-black-950]/30 to-[--color-black-950]/80 z-[5]"></div>
+
+    <div class="absolute w-full h-screen top-0 z-10 px-[5%] flex flex-col justify-center items-center">
+      <div class="text-center flex flex-col items-center">
+        <p data-hero="jp" class="font-noto-serif-jp text-[12px] md:text-[14px] tracking-[0.3em] mb-6 text-[--color-cream]/60" style="opacity: 0;">
+          押本龍一
+        </p>
+        <div data-hero="line" class="w-20 h-px bg-[--color-cream]/30 mb-6 origin-center" style="opacity: 0;"></div>
+        <h1 data-hero="name" class="text-[42px] md:text-[72px] lg:text-[90px] font-cormorant font-light tracking-[0.08em] leading-[1.1]" style="opacity: 0;">
+          Ryuichi Oshimoto
+        </h1>
+        <p data-hero="subtitle" class="text-[13px] md:text-[15px] tracking-[0.35em] uppercase text-[--color-cream]/70 mt-5 mb-6 font-brandon-grotesque" style="opacity: 0;">
+          Creative Photographer
+        </p>
+        <p data-hero="year" class="text-[11px] md:text-[12px] tracking-[0.3em] uppercase text-[--color-warm-gray] mb-10 font-brandon-grotesque" style="opacity: 0;">
+          Est. 1984 &mdash; {yearsActive} Years
+        </p>
+        <a data-hero="cta" class="border border-[--color-cream]/40 btnAnimation px-8 py-3 flex gap-3 items-center w-fit text-[13px] uppercase tracking-[0.25em] font-brandon-grotesque" href="/portfolio" style="opacity: 0;">
+          View Portfolio
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
+      </div>
+
+      <div data-hero="bottom" class="absolute bottom-10 w-full px-[5%] flex flex-col md:flex-row gap-5 md:gap-20 justify-end text-[13px] md:text-[15px] tracking-[0.1em]" style="opacity: 0;">
+        <div>
+          <a href="#showcase" class="dropDown flex gap-3 items-center w-fit text-[--color-cream]/70 hover:text-[--color-cream] transition-colors duration-500">
+            Selected Work
+            <svg class="svgIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </a>
+        </div>
+        <SocialIcons big />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (sel: string) => document.querySelector(`[data-hero="${sel}"]`);
+
+  if (prefersReduced) {
+    gsap.to('[data-hero]', { opacity: 1, duration: 0.3 });
+  } else {
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    tl.fromTo($('jp'),
+      { opacity: 0, letterSpacing: '0.8em' },
+      { opacity: 0.6, letterSpacing: '0.3em', duration: 0.9, ease: 'power2.out' }
+    )
+    .fromTo($('line'),
+      { scaleX: 0, opacity: 0 },
+      { scaleX: 1, opacity: 0.3, duration: 0.7, ease: 'power3.inOut' },
+      '-=0.6'
+    )
+    .fromTo($('name'),
+      { y: 60, opacity: 0, skewY: 2 },
+      { y: 0, opacity: 1, skewY: 0, duration: 0.9, ease: 'power4.out' },
+      '-=0.4'
+    )
+    .fromTo($('subtitle'),
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+      '-=0.5'
+    )
+    .fromTo($('year'),
+      { opacity: 0, scaleY: 0.9 },
+      { opacity: 1, scaleY: 1, duration: 0.5, ease: 'back.out(1.5)' },
+      '-=0.3'
+    )
+    .fromTo($('cta'),
+      { clipPath: 'inset(0 100% 0 0)', opacity: 1 },
+      { clipPath: 'inset(0 0% 0 0)', duration: 0.5, ease: 'power3.inOut' },
+      '-=0.2'
+    )
+    .fromTo($('bottom'),
+      { y: 10, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+      '-=0.3'
+    );
+  }
+</script>

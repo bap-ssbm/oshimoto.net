@@ -1,0 +1,22 @@
+---
+---
+
+<video
+  id="hero-video"
+  class="object-cover lg:w-full right-0 opacity-70 min-h-screen"
+  autoplay
+  playsinline
+  muted
+  loop
+  preload="auto"
+  aria-label="Background video showcasing photography work"
+>
+  <source src="/video/20230129_CX取材.mp4" type="video/mp4" />
+</video>
+
+<script>
+  document.body.addEventListener('touchstart', () => {
+    const video = document.getElementById('hero-video') as HTMLVideoElement;
+    if (video?.paused) video.play();
+  }, { once: true });
+</script>

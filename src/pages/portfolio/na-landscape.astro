@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PortfolioNav from '../../components/portfolio/PortfolioNav';
+import PortfolioNav from '../../components/portfolio/PortfolioNav.astro';
 import Portfolio from '../../components/portfolio/Portfolio';
 import { usPics } from '../../data/portfolio-data.js';
 ---
@@ -11,7 +11,7 @@ import { usPics } from '../../data/portfolio-data.js';
   canonicalPath="/portfolio/na-landscape"
 >
   <div class="pt-[100px] md:pt-[200px]">
-    <PortfolioNav client:load />
+    <PortfolioNav />
     <Portfolio client:load imgData={usPics} />
   </div>
 </Layout>

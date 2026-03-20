@@ -20,52 +20,36 @@ export default function Magazine({ english }: MagazineProps) {
 
   return (
     <div className="md:w-[70%]">
-      <h2 className="text-[30px] mb-10">Magazines</h2>
-      <div className="flex py-5 border-t gap-5 justify-between">
-        <p className="text-[14px]">SIGMA</p>
+      <p className="font-noto-serif-jp text-[11px] tracking-[0.4em] text-warm-gray mb-3">掲載誌</p>
+      <h2 className="font-cormorant text-[30px] md:text-[40px] font-light tracking-[0.04em] mb-10">Publications</h2>
+      <div className="flex py-6 border-t border-warm-gray/15 gap-5 justify-between">
+        <p className="text-[13px] text-warm-gray font-cormorant tracking-[0.05em]">SIGMA</p>
         {english ? (
-          <a
-            ref={sigmaRef}
-            key="sigma-en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline duration-300 transition"
-            href="https://www.sigma-global.com/jp/special/archive-contents/?category=oshimoto-photoessay"
-          >
-            "Ryuichi Oshimoto "The Sights I Encountered" A photo essay in which the photographer describes the sights
-            he encountered in his travels."
+          <a ref={sigmaRef} key="sigma-en" target="_blank" rel="noopener noreferrer"
+            className="text-cream/70 hover:text-cream duration-300 transition text-[14px] leading-6"
+            href="https://www.sigma-global.com/jp/special/archive-contents/?category=oshimoto-photoessay">
+            "The Sights I Encountered" — A photo essay describing the sights encountered in travels.
           </a>
         ) : (
-          <a
-            ref={sigmaRef}
-            key="sigma-ja"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline duration-300 transition"
-            href="https://www.sigma-global.com/jp/magazine/m_series/oshimoto-photoessay/"
-          >
-            "押本龍一「私の出会う光景」 写真家押本龍一が各地を巡り、 出会った光景を写真と文章で綴るフォトエッセイ。"
+          <a ref={sigmaRef} key="sigma-ja" target="_blank" rel="noopener noreferrer"
+            className="text-cream/70 hover:text-cream duration-300 transition font-noto-serif-jp text-[14px] leading-7"
+            href="https://www.sigma-global.com/jp/magazine/m_series/oshimoto-photoessay/">
+            「私の出会う光景」写真家押本龍一が各地を巡り、出会った光景を写真と文章で綴るフォトエッセイ。
           </a>
         )}
       </div>
-      <div className="flex py-5 border-t gap-5 justify-between">
-        <p className="text-[14px]">デジカメWatch</p>
+      <div className="flex py-6 border-t border-warm-gray/15 gap-5 justify-between">
+        <p className="text-[13px] text-warm-gray font-cormorant tracking-[0.05em]">デジカメWatch</p>
         {english ? (
-          <a
-            ref={dcRef}
-            key="dc-en"
-            className="hover:underline duration-300 transition"
-            href="https://dc.watch.impress.co.jp/cda/dialy/2007/06/27/6526.html"
-          >
-            Digital Photo Diary in USA on dc.watch.impress.co.
+          <a ref={dcRef} key="dc-en"
+            className="text-cream/70 hover:text-cream duration-300 transition text-[14px] leading-6"
+            href="https://dc.watch.impress.co.jp/cda/dialy/2007/06/27/6526.html">
+            Digital Photo Diary in USA
           </a>
         ) : (
-          <a
-            ref={dcRef}
-            key="dc-ja"
-            className="hover:underline duration-300 transition"
-            href="https://dc.watch.impress.co.jp/cda/dialy/2007/06/27/6526.html"
-          >
+          <a ref={dcRef} key="dc-ja"
+            className="text-cream/70 hover:text-cream duration-300 transition font-noto-serif-jp text-[14px] leading-7"
+            href="https://dc.watch.impress.co.jp/cda/dialy/2007/06/27/6526.html">
             押本龍一のUSAデジタルフォト日記　コメディーグループを撮影した
           </a>
         )}

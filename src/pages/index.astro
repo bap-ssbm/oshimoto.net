@@ -1,12 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/home/Hero';
-import HomeEvents from '../components/home/HomeEvents';
+import Hero from '../components/home/Hero.astro';
+import ParallaxStrip from '../components/home/ParallaxStrip.astro';
+import Showcase from '../components/home/Showcase.astro';
+import HomeEvents from '../components/home/HomeEvents.astro';
 ---
 
 <Layout canonicalPath="/">
-  <main class="min-h-screen">
-    <Hero client:load />
-    <HomeEvents client:visible />
+  <main class="min-h-screen film-grain">
+    <Hero />
+    <ParallaxStrip />
+    <Showcase />
+    <HomeEvents />
   </main>
 </Layout>

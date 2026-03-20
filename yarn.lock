@@ -2756,6 +2756,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lenis@npm:^1.3.19":
+  version: 1.3.19
+  resolution: "lenis@npm:1.3.19"
+  peerDependencies:
+    "@nuxt/kit": ">=3.0.0"
+    react: ">=17.0.0"
+    vue: ">=3.0.0"
+  peerDependenciesMeta:
+    "@nuxt/kit":
+      optional: true
+    react:
+      optional: true
+    vue:
+      optional: true
+  checksum: 10c0/fa6ba17cd8b47d1b6340c12ac7744ef2d9439fc797ba8837f1171afefd950738e19653285589cacb4bc1a0603f0df6b2e6018e280c75906d5988b7fbaedbc6eb
+  languageName: node
+  linkType: hard
+
 "lightningcss-android-arm64@npm:1.32.0":
   version: 1.32.0
   resolution: "lightningcss-android-arm64@npm:1.32.0"
@@ -3763,6 +3781,7 @@ __metadata:
     "@types/react-dom": "npm:^18.3.7"
     astro: "npm:^6.0.7"
     gsap: "npm:^3.14.2"
+    lenis: "npm:^1.3.19"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-icons: "npm:^5.6.0"

@@ -1,0 +1,25 @@
+---
+import SocialIcons from './SocialIcons.astro';
+---
+
+<footer class="px-[5%] md:px-[10%] pt-[80px] pb-[40px]">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="w-full h-px bg-[--color-warm-gray]/15 mb-12"></div>
+    <div class="flex md:justify-between flex-col md:flex-row gap-10">
+      <div class="flex flex-col gap-8">
+        <SocialIcons />
+        <a href="/contact" class="text-[12px] tracking-[0.25em] uppercase text-[--color-cream]/50 hover:text-[--color-cream] transition-colors duration-500">
+          Contact Me
+        </a>
+      </div>
+      <div class="flex flex-col gap-4 md:text-end">
+        <p class="font-cormorant text-[14px] text-[--color-warm-gray]/60 tracking-[0.05em]">
+          &copy; Ryuichi Oshimoto {new Date().getFullYear()}
+        </p>
+        <p class="font-noto-serif-jp text-[11px] text-[--color-warm-gray]/30 tracking-[0.2em]">
+          押本龍一
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

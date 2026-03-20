@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PortfolioNav from '../../components/portfolio/PortfolioNav';
+import PortfolioNav from '../../components/portfolio/PortfolioNav.astro';
 import HomepageImage from '../../components/home/portfolio/HomepageImage';
 import { SHOWCASE_IMAGES } from '../../data/site-config';
 ---
@@ -11,7 +11,7 @@ import { SHOWCASE_IMAGES } from '../../data/site-config';
   canonicalPath="/portfolio"
 >
   <div class="pt-[100px] md:pt-[200px]">
-    <PortfolioNav client:load />
+    <PortfolioNav />
     <section class="py-[5%] flex flex-col gap-10 md:gap-16">
       {SHOWCASE_IMAGES.map((item) => (
         <HomepageImage

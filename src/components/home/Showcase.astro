@@ -1,0 +1,118 @@
+---
+import { SHOWCASE_IMAGES } from '../../data/site-config';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const JP_LABELS = ['人物', '北米風景', '日本風景'];
+const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Documentary', 'Commercial'];
+---
+
+<section id="showcase" class="py-[120px] md:py-[180px] relative">
+  <div class="px-[5%] md:px-[10%] mb-20 md:mb-32">
+    <SectionHeading jpLabel="作品" enTitle="Selected Work" />
+  </div>
+
+  <div class="flex flex-col gap-24 md:gap-40">
+    {SHOWCASE_IMAGES.map((item, i) => (
+      <a data-showcase-item href={item.linkTo} class="group block relative">
+        <div class="showcase-number absolute -top-8 md:-top-16 right-[5%] md:right-[10%] font-cormorant text-[100px] md:text-[200px] font-light text-white/15 leading-none pointer-events-none select-none" style="opacity: 0;">
+          0{i + 1}
+        </div>
+        <div class={`showcase-item relative ${i % 2 === 0 ? 'ml-[5%] md:ml-[10%] mr-[5%] md:mr-[20%]' : 'ml-[5%] md:ml-[20%] mr-[5%] md:mr-[10%]'}`}>
+          <div class="showcase-img-wrapper overflow-hidden">
+            <img
+              src={item.imgURL}
+              alt={`${item.label} photography collection`}
+              class="w-full h-[50vh] md:h-[70vh] object-cover will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="showcase-text absolute bottom-0 left-0 z-10 p-6 md:p-12">
+            <p class="font-noto-serif-jp text-[11px] tracking-[0.3em] text-[--color-cream]/50 mb-2">
+              {JP_LABELS[i] ?? ''}
+            </p>
+            <h3 class="font-cormorant text-[28px] md:text-[42px] font-light tracking-[0.06em] mb-3">
+              {item.label}
+            </h3>
+            <span class="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase text-[--color-cream]/60 group-hover:text-[--color-cream] transition-colors duration-500">
+              Explore
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div data-showcase-marquee class="mt-24 md:mt-40 overflow-hidden border-y border-[--color-warm-gray]/10 py-4" style="opacity: 0;">
+    <div class="marquee-track flex whitespace-nowrap gap-16 text-[12px] md:text-[14px] tracking-[0.3em] uppercase text-[--color-warm-gray]/30 font-cormorant">
+      {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((text, i) => (
+        <span>{i > 0 ? <>&nbsp;·&nbsp;&nbsp;{text}</> : text}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dur = (fallback: number) => prefersReduced ? 0.3 : fallback;
+
+  document.querySelectorAll('[data-showcase-item]').forEach((el) => {
+    const imgWrapper = el.querySelector('.showcase-img-wrapper') as HTMLElement;
+    const img = el.querySelector('img');
+    const text = el.querySelector('.showcase-text');
+    const number = el.querySelector('.showcase-number');
+
+    if (imgWrapper) {
+      gsap.set(imgWrapper, { clipPath: 'inset(0 100% 0 0)' });
+      gsap.to(imgWrapper, {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: dur(1.4),
+        ease: 'power4.inOut',
+        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
+      });
+    }
+
+    if (img && !prefersReduced) {
+      gsap.set(img, { scale: 1.15 });
+      gsap.fromTo(img,
+        { y: 40 },
+        { y: -40, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 2 } }
+      );
+    }
+
+    if (text) {
+      gsap.fromTo(text,
+        { clipPath: 'inset(100% 0 0 0)', y: 20 },
+        { clipPath: 'inset(0% 0 0 0)', y: 0,
+          duration: dur(0.9), delay: prefersReduced ? 0 : 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 75%', once: true } }
+      );
+    }
+
+    if (number) {
+      gsap.fromTo(number,
+        { opacity: 0, y: 30, skewY: 5 },
+        { opacity: 0.15, y: 0, skewY: 0,
+          duration: dur(0.8), delay: 0.2, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 80%', once: true } }
+      );
+    }
+  });
+
+  const marquee = document.querySelector('[data-showcase-marquee]');
+  if (marquee) {
+    gsap.fromTo(marquee,
+      { opacity: 0 },
+      { opacity: 1, duration: 1,
+        scrollTrigger: { trigger: marquee, start: 'top 90%', once: true } }
+    );
+  }
+</script>
