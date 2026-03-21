@@ -80,7 +80,7 @@ export default function AboutPgLayout() {
         {/* Image — takes ~60% width on desktop, full on mobile */}
         <div ref={imgRef} className="md:w-[55%] md:ml-auto overflow-hidden" style={{ clipPath: 'inset(100% 0 0 0)' }}>
           <img
-            className="w-full h-[60vh] md:h-[85vh] object-cover object-[center_20%]"
+            className="w-full h-[60svh] md:h-[85svh] object-cover object-[center_20%]"
             src={ABOUT_IMAGE}
             alt="Ryuichi Oshimoto portrait"
           />

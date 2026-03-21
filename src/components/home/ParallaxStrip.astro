@@ -22,7 +22,7 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
 ---
 
 <section class="hscroll-section relative" data-hscroll>
-  <div class="hscroll-pin h-screen flex items-center overflow-hidden">
+  <div class="hscroll-pin h-[100svh] flex items-center overflow-hidden">
     <div class="hscroll-track flex items-center gap-5 md:gap-7 pl-[10vw]" data-hscroll-track>
       {images.map((src, i) => (
         <div
@@ -34,7 +34,7 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
             src={src}
             alt=""
             class="w-full object-cover block"
-            style="height: 45vh; filter: grayscale(0.3) sepia(0.06) brightness(0.85);"
+            style="height: 45svh; filter: grayscale(0.3) sepia(0.06) brightness(0.85);"
             loading="lazy"
           />
           <span class="absolute bottom-3 right-3 font-anonymous-pro text-[9px] text-cream/20 tracking-[0.1em]">

@@ -44,7 +44,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
     <div
       ref={overlayRef}
       style={{ opacity: 0 }}
-      className="fixed w-full h-screen top-0 left-0 z-50 bg-black-950 box-border grid place-items-center"
+      className="fixed w-full h-[100svh] top-0 left-0 z-50 bg-black-950 box-border grid place-items-center"
       role="dialog"
       aria-label="Image viewer"
     >
@@ -60,7 +60,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         <img
           ref={imgRef}
           key={imgI}
-          className="max-w-[80vw] max-h-[90vh] pointer-events-none"
+          className="max-w-[80vw] max-h-[90svh] pointer-events-none"
           src={imgData[imgI].src}
           alt={`Portfolio image ${imgI + 1} of ${imgData.length}`}
         />

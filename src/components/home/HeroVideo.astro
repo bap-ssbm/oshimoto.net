@@ -1,24 +1,38 @@
 ---
 ---
 
-<video
-  id="hero-video"
-  class="object-cover lg:w-full right-0 opacity-70 min-h-screen"
-  width="1920"
-  height="1080"
-  autoplay
-  playsinline
-  muted
-  loop
-  preload="auto"
-  aria-label="Background video showcasing photography work"
->
-  <source src="/video/20230129_CX取材.mp4" type="video/mp4" />
-</video>
+<div class="relative min-h-[100svh]">
+  <video
+    id="hero-video"
+    class="absolute inset-0 w-full h-full object-cover opacity-70"
+    width="1920"
+    height="1080"
+    autoplay
+    playsinline
+    muted
+    loop
+    preload="auto"
+    poster="/images/Screenshot_1.jpg"
+    aria-label="Background video showcasing photography work"
+  >
+    <source src="/video/20230129_CX取材.mp4" type="video/mp4" />
+  </video>
+  <!-- Fallback image shown until video plays -->
+  <img id="hero-fallback" src="/images/poster.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-70" />
+</div>
 
 <script>
-  document.body.addEventListener('touchstart', () => {
-    const video = document.getElementById('hero-video') as HTMLVideoElement;
-    if (video?.paused) video.play();
-  }, { once: true });
+  const video = document.getElementById('hero-video') as HTMLVideoElement;
+  const fallback = document.getElementById('hero-fallback') as HTMLImageElement;
+
+  if (video && fallback) {
+    // Hide fallback once video starts playing
+    const hideFallback = () => { fallback.style.display = 'none'; };
+    video.addEventListener('playing', hideFallback, { once: true });
+
+    // Touch to play on mobile
+    document.body.addEventListener('touchstart', () => {
+      if (video.paused) video.play();
+    }, { once: true });
+  }
 </script>
