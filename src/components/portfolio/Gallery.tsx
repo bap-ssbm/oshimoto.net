@@ -36,6 +36,29 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
     if (loadedCount >= threshold && !allLoaded) setAllLoaded(true);
   }, [loadedCount, imgData.length, allLoaded]);
 
+  // Fallback: check already-loaded images on tab focus + timeout
+  useEffect(() => {
+    if (allLoaded) return;
+
+    const checkLoaded = () => {
+      let count = 0;
+      containerRef.current?.querySelectorAll('img').forEach((img) => {
+        if ((img as HTMLImageElement).complete) count++;
+      });
+      if (count >= Math.min(8, imgData.length)) setAllLoaded(true);
+    };
+
+    const onVisibility = () => { if (document.visibilityState === 'visible') checkLoaded(); };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const fallbackTimer = setTimeout(() => { if (!allLoaded) setAllLoaded(true); }, 8000);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility);
+      clearTimeout(fallbackTimer);
+    };
+  }, [allLoaded, imgData.length]);
+
   useEffect(() => {
     if (!allLoaded) return;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
