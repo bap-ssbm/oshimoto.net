@@ -33,7 +33,8 @@ export default function Navbar() {
         <a href="/">
           <img
             className={`transition-all duration-500 ${scrolled ? 'h-10 md:h-12' : 'h-16 md:h-20'}`}
-            height={80}
+            width={617}
+            height={205}
             src="/images/ryuichi oshimoto white.png"
             alt="Ryuichi Oshimoto"
           />
