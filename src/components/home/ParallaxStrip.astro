@@ -1,12 +1,13 @@
 ---
+// imgKey = unique substring from URL used to find the image in the gallery
 const slides = [
-  { src: 'https://lh3.googleusercontent.com/6ZurmQdaMunZE3TKmq5Qns48_AFcWXALzWbXZhh1dsaAaqzICarUNM_QwejctxYYQzvqrBl-XniWT2k87pjl1S6RQKIy-dGsxftB1AA4QGeqjLu1X0CABcCj9adQxSMNe2_4YLBFvA=w1200', href: '/portfolio/jp-landscape' },
-  { src: 'https://lh3.googleusercontent.com/qBk5E0g8ma7aDORpifeZeR9fgjQum82rwSl3ja9fT9stWbi-4Tr9xPePphlxa_bChKpBi-Rxy2Ddkt8OfteKXRUQjW1htD37jQMcq4lgnBZkyUGr1oJv1ogYnO9t4Z10a8BPGJblMA=w1200', href: '/portfolio/portraits' },
-  { src: 'https://lh3.googleusercontent.com/rbqzg3DvSp54BML7fyX_gdBym8-lqKe2_yAYxvX26o3Efc4mXDc1MzHN3PB1TdmdJtLnPB5PkjFGodU44mrhSpMr-VrV-VzQo_ZdhKcqU4uYyMbJz8wWVyqK7-aTafiqqzC5inKS8A=w1200', href: '/portfolio/jp-landscape' },
-  { src: 'https://lh3.googleusercontent.com/pw/AJFCJaUmZpz7_bY80mT4AEv3sAe5EedAlERU3Z47pIiz3e1OsPpczyYxcd9s2XH9u4zhSy92_2MoR555Z9uCNVSRxykp7FHhdGdSteHsxlt94HO3ZbmUqKk=w1200', href: '/portfolio/portraits' },
-  { src: 'https://lh3.googleusercontent.com/3GUSSJ_PC4P0Mi2n-hUGGe8zaUFfY1kLulXOQrTSQovFpUZcOTKKKRd1GEddCHVlejvsFb243ANmgvYVR50OVjsxK3UWthgDgEN-6NkfA1p-ZWvFD4o7iDQsi2ybJVJXgRpXp0XOdA=w1200', href: '/portfolio/na-landscape' },
-  { src: 'https://lh3.googleusercontent.com/tMXDnvwg3drixaH28N3KqpexUmmP6QyyBx-sOpe28yxtdMTLsfj2tYQSE5RXvVBUfI0pwoRmNwb4nlYmyGCp0JrGwwH6bSCJ_-mSGy7YLY5pnbDLRu9A4xtuJtK-CqZD17-KKyT_pQ=w1200', href: '/portfolio/jp-landscape' },
-  { src: 'https://lh3.googleusercontent.com/EKWWaO45EUx6UJxYdIj-o2-4H9l3uYA_licguOPYr6IWR_DLe4WUP4W-h50kvMvjU9n3fhJ73AI6GQqaY3R9a0aliPuaatdw8VZ795dXBGshI0nQhPMr53wk8vJ7AniWECynF0mwZw=w1200', href: '/portfolio/portraits' },
+  { src: 'https://lh3.googleusercontent.com/6ZurmQdaMunZE3TKmq5Qns48_AFcWXALzWbXZhh1dsaAaqzICarUNM_QwejctxYYQzvqrBl-XniWT2k87pjl1S6RQKIy-dGsxftB1AA4QGeqjLu1X0CABcCj9adQxSMNe2_4YLBFvA=w1200', href: '/portfolio/jp-landscape', imgKey: '6ZurmQ' },
+  { src: 'https://lh3.googleusercontent.com/qBk5E0g8ma7aDORpifeZeR9fgjQum82rwSl3ja9fT9stWbi-4Tr9xPePphlxa_bChKpBi-Rxy2Ddkt8OfteKXRUQjW1htD37jQMcq4lgnBZkyUGr1oJv1ogYnO9t4Z10a8BPGJblMA=w1200', href: '/portfolio/portraits', imgKey: 'qBk5E0' },
+  { src: 'https://lh3.googleusercontent.com/rbqzg3DvSp54BML7fyX_gdBym8-lqKe2_yAYxvX26o3Efc4mXDc1MzHN3PB1TdmdJtLnPB5PkjFGodU44mrhSpMr-VrV-VzQo_ZdhKcqU4uYyMbJz8wWVyqK7-aTafiqqzC5inKS8A=w1200', href: '/portfolio/jp-landscape', imgKey: 'rbqzg3' },
+  { src: 'https://lh3.googleusercontent.com/pw/AJFCJaUmZpz7_bY80mT4AEv3sAe5EedAlERU3Z47pIiz3e1OsPpczyYxcd9s2XH9u4zhSy92_2MoR555Z9uCNVSRxykp7FHhdGdSteHsxlt94HO3ZbmUqKk=w1200', href: '/portfolio/portraits', imgKey: 'AJFCJaUmZ' },
+  { src: 'https://lh3.googleusercontent.com/3GUSSJ_PC4P0Mi2n-hUGGe8zaUFfY1kLulXOQrTSQovFpUZcOTKKKRd1GEddCHVlejvsFb243ANmgvYVR50OVjsxK3UWthgDgEN-6NkfA1p-ZWvFD4o7iDQsi2ybJVJXgRpXp0XOdA=w1200', href: '/portfolio/na-landscape', imgKey: '3GUSSJ' },
+  { src: 'https://lh3.googleusercontent.com/tMXDnvwg3drixaH28N3KqpexUmmP6QyyBx-sOpe28yxtdMTLsfj2tYQSE5RXvVBUfI0pwoRmNwb4nlYmyGCp0JrGwwH6bSCJ_-mSGy7YLY5pnbDLRu9A4xtuJtK-CqZD17-KKyT_pQ=w1200', href: '/portfolio/jp-landscape', imgKey: 'tMXDnvw' },
+  { src: 'https://lh3.googleusercontent.com/EKWWaO45EUx6UJxYdIj-o2-4H9l3uYA_licguOPYr6IWR_DLe4WUP4W-h50kvMvjU9n3fhJ73AI6GQqaY3R9a0aliPuaatdw8VZ795dXBGshI0nQhPMr53wk8vJ7AniWECynF0mwZw=w1200', href: '/portfolio/portraits', imgKey: 'EKWWaO' },
 ];
 
 const widths =   ['35vw', '20vw', '32vw', '18vw', '36vw', '30vw', '22vw'];
@@ -18,7 +19,7 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
     <div class="hscroll-track flex items-center gap-5 md:gap-7 pl-[10vw]" data-hscroll-track>
       {slides.map((slide, i) => (
         <a
-          href={slide.href}
+          href={`${slide.href}#img=${slide.imgKey}`}
           class="hscroll-slide flex-shrink-0 relative block group overflow-hidden"
           data-sp-width={spWidths[i]}
           style={`width: ${widths[i]};`}
