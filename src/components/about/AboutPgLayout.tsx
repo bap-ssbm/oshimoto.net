@@ -127,16 +127,9 @@ export default function AboutPgLayout() {
 
       {/* ── Exhibitions ── */}
       <div ref={exhibitionsRef} className="px-[5%] md:px-[12%] max-w-[1200px] mx-auto mb-32 md:mb-48" style={{ opacity: 0 }}>
-        <div className="flex flex-col md:flex-row gap-12 md:gap-0">
-          <div className="md:w-[35%] md:sticky md:top-[200px] md:self-start">
-            <p className="font-noto-serif-jp text-[11px] tracking-[0.6em] text-warm-gray/70 mb-5 italic">展覧会</p>
-            <h2 className="font-cormorant text-[38px] md:text-[56px] font-light tracking-[-0.02em] leading-[1.05]">Exhibitions</h2>
-            <div className="w-12 h-px bg-gold/40 mt-8" />
-          </div>
-          <div className="md:w-[65%]">
-            <Events />
-          </div>
-        </div>
+        <p className="font-noto-serif-jp text-[11px] tracking-[0.6em] text-warm-gray/70 mb-5 italic">展覧会</p>
+        <h2 className="font-cormorant text-[38px] md:text-[56px] font-light tracking-[-0.02em] leading-[1.05] mb-16 md:mb-24">Exhibitions</h2>
+        <Events />
       </div>
 
       <div className="mx-[5%] md:mx-[12%] h-px bg-warm-gray/[0.06]" />
