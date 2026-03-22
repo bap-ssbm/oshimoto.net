@@ -21,6 +21,21 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
   }, []);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        setImgI((imgI + 1) % imgData.length);
+      } else if (e.key === 'ArrowLeft') {
+        setImgI(imgI === 0 ? imgData.length - 1 : imgI - 1);
+      } else if (e.key === 'Escape') {
+        close();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [imgI]);
+
+  useEffect(() => {
     if (imgRef.current) {
       gsap.fromTo(imgRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 });
     }
