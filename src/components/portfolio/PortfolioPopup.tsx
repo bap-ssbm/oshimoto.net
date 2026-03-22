@@ -73,7 +73,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         }}
         aria-label="Next image"
       >
-        <CgPlayTrackNext className="fill-white" />
+        <CgPlayTrackNext className="fill-current" />
       </button>
       <button
         className="absolute md:hover:scale-110 duration-200 border p-2 border-white rounded-full bottom-[50%] left-[5%] text-[25px]"

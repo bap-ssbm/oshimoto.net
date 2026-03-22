@@ -21,16 +21,16 @@
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-noto-serif-jp: 'Noto Serif JP', serif;
 
-  --color-black-950: #0a0a0c;
-  --color-black-900: #111216;
-  --color-black-800: #1a1a1f;
-  --color-black-700: #252530;
-  --color-black-600: #FDF2F2;
-  --color-black-500: #F4F5F7;
-  --color-black-400: #929292;
-  --color-cream: #e8e0d4;
-  --color-warm-gray: #a09888;
-  --color-gold: #c9a96e;
+  --color-black-950: #f5f2ed;
+  --color-black-900: #eae6df;
+  --color-black-800: #ddd9d2;
+  --color-black-700: #ccc8c0;
+  --color-black-600: #1a1a1a;
+  --color-black-500: #2d2d2d;
+  --color-black-400: #6b6b6b;
+  --color-cream: #1a1a1a;
+  --color-warm-gray: #6b6058;
+  --color-gold: #9e7b3f;
 
   --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-expo-in-out: cubic-bezier(0.87, 0, 0.13, 1);
@@ -61,7 +61,7 @@ video::-webkit-media-controls {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
-  opacity: 0.5;
+  opacity: 0.15;
 }
 
 /* ── Text clip reveal ── */
