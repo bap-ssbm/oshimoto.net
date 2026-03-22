@@ -33,8 +33,11 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    requestAnimationFrame(() => {
-      containerRef.current?.querySelectorAll('.gallery-item').forEach((el) => {
+    setTimeout(() => {
+      const items = containerRef.current?.querySelectorAll('.gallery-item');
+      if (!items || items.length === 0) return;
+
+      items.forEach((el) => {
         gsap.fromTo(el,
           { opacity: 0, y: prefersReduced ? 0 : 20 },
           {
@@ -46,7 +49,7 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
         );
       });
       ScrollTrigger.refresh();
-    });
+    }, 100);
   }, []);
 
   const openImage = (i: number) => {

@@ -15,9 +15,11 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
     if (overlayRef.current) {
       gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.inOut' });
     }
+    return () => { document.body.style.overflow = ''; };
   }, []);
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
     <div
       ref={overlayRef}
       style={{ opacity: 0 }}
-      className="fixed w-full h-[100svh] top-0 left-0 z-50 bg-black-950 box-border grid place-items-center"
+      className="fixed inset-0 w-full h-full z-50 bg-black-950 box-border grid place-items-center"
       role="dialog"
       aria-label="Image viewer"
     >
@@ -67,7 +69,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         <p className="font-bold">
           {imgI + 1}/{imgData.length}
         </p>
-        <button onClick={close} className="text-[20px]" aria-label="Close image viewer">
+        <button onClick={close} className="text-[20px] cursor-pointer" aria-label="Close image viewer">
           <AiOutlineClose />
         </button>
       </div>
@@ -81,7 +83,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         />
       </div>
       <button
-        className="absolute md:hover:scale-110 duration-200 border p-1.5 md:p-2 border-black/30 rounded-full bottom-[8%] md:bottom-[50%] right-[30%] md:right-[5%] text-[18px] md:text-[25px]"
+        className="absolute cursor-pointer md:hover:scale-110 duration-200 border p-1.5 md:p-2 border-black/30 rounded-full bottom-[8%] md:bottom-[50%] right-[30%] md:right-[5%] text-[18px] md:text-[25px]"
         onClick={() => {
           const nextI = imgI + 1;
           setImgI(nextI === imgData.length ? 0 : nextI);
@@ -91,7 +93,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         <CgPlayTrackNext className="fill-current" />
       </button>
       <button
-        className="absolute md:hover:scale-110 duration-200 border p-1.5 md:p-2 border-black/30 rounded-full bottom-[8%] md:bottom-[50%] left-[30%] md:left-[5%] text-[18px] md:text-[25px]"
+        className="absolute cursor-pointer md:hover:scale-110 duration-200 border p-1.5 md:p-2 border-black/30 rounded-full bottom-[8%] md:bottom-[50%] left-[30%] md:left-[5%] text-[18px] md:text-[25px]"
         onClick={() => {
           const nextI = imgI - 1;
           setImgI(nextI === -1 ? imgData.length - 1 : nextI);
