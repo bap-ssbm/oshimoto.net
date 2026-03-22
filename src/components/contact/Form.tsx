@@ -3,7 +3,7 @@ import { BiLoaderAlt } from 'react-icons/bi';
 import emailjs from '@emailjs/browser';
 
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LfMpJklAAAAADeaKJSsTQwVwC3PIVkUB8B3Yrcg';
-const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service_l49owur';
+const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service_0ifr169';
 const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'template_071s328';
 
 const INPUT_CLASS =
