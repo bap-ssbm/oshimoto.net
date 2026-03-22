@@ -24,7 +24,7 @@ export const SHOWCASE_IMAGES = [
   {
     imgURL: 'https://lh3.googleusercontent.com/FjN6QljUzQy3yXBFIjaoYUCN-C3g52kdPscqae9PlL6FMyFZokn3Gj2sHV_GBIhQIbQrpt4BBfrWCzwR_dBy9jYKOq7QW9VL1Abq8JW0z4UiEGiSMdBYEaenBCMpQjpKN3-0UgG2=w1600',
     linkTo: '/portfolio/na-landscape',
-    label: 'NORTH AMERICA',
+    label: 'AMERICAS',
   },
   {
     imgURL: 'https://lh3.googleusercontent.com/L_bkql0NGWRhvIWPED1U0fucZr7l0UQtZ8GkgM_7E4G_vBlLkY3Uxy3WPSkOYpfWvHgLpvYpNUCm-QM6kCZYms7k8AFa4LZ5_lNETx4ji-3uV7YAzRyutE0XUkL8Wcf30QVL6PGj0Q=w1600',
