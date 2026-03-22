@@ -2,9 +2,9 @@ import { useRef, useState, useCallback } from 'react';
 import { BiLoaderAlt } from 'react-icons/bi';
 import emailjs from '@emailjs/browser';
 
-const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LfMpJklAAAAADeaKJSsTQwVwC3PIVkUB8B3Yrcg';
-const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service_0ifr169';
-const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'template_071s328';
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? '';
+const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID ?? '';
+const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ?? '';
 
 const INPUT_CLASS =
   'bg-transparent border-b border-cream/30 focus:border-gold py-3 tracking-[0.1em] text-cream text-[14px] font-brandon-grotesque transition-all duration-500 outline-none placeholder:text-cream/40 placeholder:tracking-[0.15em] placeholder:text-[12px] placeholder:uppercase';
