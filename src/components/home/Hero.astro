@@ -40,7 +40,7 @@ const yearsActive = new Date().getFullYear() - 1984;
 
       <div data-hero="bottom" class="absolute bottom-10 w-full px-[5%] flex flex-col md:flex-row gap-5 md:gap-20 justify-end text-[13px] md:text-[15px] tracking-[0.1em] text-black/60" style="opacity: 0;">
         <div>
-          <a href="#showcase" class="dropDown flex gap-3 items-center w-fit text-black/80 hover:text-black transition-colors duration-500">
+          <a href="#showcase" data-smooth-scroll class="dropDown flex gap-3 items-center w-fit text-black/80 hover:text-black transition-colors duration-500">
             Selected Work
             <svg class="svgIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
@@ -62,6 +62,17 @@ const yearsActive = new Date().getFullYear() - 1984;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const $ = (sel: string) => document.querySelector(`[data-hero="${sel}"]`);
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('[data-smooth-scroll]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector((link as HTMLAnchorElement).getAttribute('href')!);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
   if (prefersReduced) {
     gsap.to('[data-hero]', { opacity: 1, duration: 0.3 });
