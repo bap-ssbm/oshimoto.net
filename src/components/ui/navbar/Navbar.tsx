@@ -24,7 +24,7 @@ export default function Navbar() {
     <nav
       ref={navRef}
       style={{ opacity: 0 }}
-      className={`w-full flex flex-col gap-5 py-5 md:py-7 px-[5%] items-center fixed top-0 z-50 text-white transition-all duration-500 ${
+      className={`w-full flex flex-col gap-5 py-5 md:py-7 px-[5%] items-center fixed top-0 z-50 text-cream transition-all duration-500 ${
         scrolled ? 'py-3 md:py-4' : ''
       }`}
       aria-label="Main navigation"
