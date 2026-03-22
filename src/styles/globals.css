@@ -238,6 +238,21 @@ video::-webkit-media-controls {
   }
 }
 
+/* ── Mask gradient reveal (obochan) ── */
+.mask-reveal {
+  mask-image: linear-gradient(130deg,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,1) 70%,
+    rgba(255,255,255,0.1) 79%,
+    rgba(255,255,255,0) 100%);
+  mask-position: 200% 0%;
+  mask-size: 300% 100%;
+}
+.mask-reveal.is-revealed {
+  transition: mask-position ease-out 2.8s;
+  mask-position: 0% 0%;
+}
+
 /* ── Gallery mask reveal ── */
 .gallery-mask-reveal {
   transition: mask-position ease-out 2.8s;

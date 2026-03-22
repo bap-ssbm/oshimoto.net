@@ -17,17 +17,7 @@ const yearsActive = new Date().getFullYear() - 1984;
         </p>
         <div data-hero="line" class="w-20 h-px bg-[--color-cream]/30 mb-6 origin-center" style="opacity: 0;"></div>
         <h1 data-hero="name" class="text-[42px] md:text-[76px] lg:text-[96px] font-cormorant font-light tracking-[-0.02em] leading-[1.05]" style="opacity: 0;">
-          <span class="inline-block overflow-hidden">
-            {Array.from('Ryuichi').map((char, i) => (
-              <span class="hero-char inline-block" style="opacity: 0; transform: translateY(100%);" data-delay={i * 0.03}>{char}</span>
-            ))}
-          </span>
-          {' '}
-          <span class="inline-block overflow-hidden">
-            {Array.from('Oshimoto').map((char, i) => (
-              <span class="hero-char inline-block" style="opacity: 0; transform: translateY(100%);" data-delay={(i + 7) * 0.03}>{char}</span>
-            ))}
-          </span>
+          Ryuichi Oshimoto
         </h1>
         <p data-hero="subtitle" class="text-[12px] md:text-[14px] tracking-[0.3em] uppercase text-[--color-cream]/50 mt-5 mb-2 font-brandon-grotesque" style="opacity: 0;">
           Los Angeles · Hayama, Japan
@@ -75,7 +65,8 @@ const yearsActive = new Date().getFullYear() - 1984;
 
   if (prefersReduced) {
     gsap.to('[data-hero]', { opacity: 1, duration: 0.3 });
-    gsap.to('.hero-char', { opacity: 1, y: 0, duration: 0.3 });
+    const name = $('name');
+    gsap.set($('name'), { opacity: 1 });
   } else {
     // Long delay only when preloader is visible (first visit in session)
     const preloaderVisible = !!document.getElementById('preloader');
@@ -89,42 +80,38 @@ const yearsActive = new Date().getFullYear() - 1984;
     }
 
     tl.fromTo($('jp'),
-      { opacity: 0, letterSpacing: '0.8em' },
-      { opacity: 0.6, letterSpacing: '0.3em', duration: 1.0, ease: 'expo.out' }
+      { opacity: 0 },
+      { opacity: 0.6, duration: 2, ease: 'power1.out' }
     )
     .fromTo($('line'),
       { scaleX: 0, opacity: 0 },
-      { scaleX: 1, opacity: 0.3, duration: 0.8, ease: 'expo.inOut' },
-      '-=0.7'
+      { scaleX: 1, opacity: 0.3, duration: 1.5, ease: 'power2.inOut' },
+      '-=1.8'
     )
-    // Set the h1 visible, then animate chars individually
-    .set($('name'), { opacity: 1 })
-    .to('.hero-char', {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.04,
-      ease: 'expo.out',
-    }, '-=0.3')
+    .fromTo($('name'),
+      { opacity: 0 },
+      { opacity: 1, duration: 2.5, ease: 'power1.out' },
+      '-=1.5'
+    )
     .fromTo($('subtitle'),
-      { y: 15, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'expo.out' },
-      '-=0.4'
+      { opacity: 0 },
+      { opacity: 1, duration: 2, ease: 'power1.out' },
+      '-=2'
     )
     .fromTo($('avail'),
       { opacity: 0 },
-      { opacity: 1, duration: 0.6, ease: 'expo.out' },
-      '-=0.4'
+      { opacity: 1, duration: 2, ease: 'power1.out' },
+      '-=1.8'
     )
     .fromTo($('cta'),
-      { y: 10, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out' },
-      '-=0.3'
+      { opacity: 0 },
+      { opacity: 1, duration: 2, ease: 'power1.out' },
+      '-=1.8'
     )
     .fromTo($('bottom'),
-      { y: 10, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: 'expo.out' },
-      '-=0.3'
+      { opacity: 0 },
+      { opacity: 1, duration: 2, ease: 'power1.out' },
+      '-=1.8'
     );
   }
 
