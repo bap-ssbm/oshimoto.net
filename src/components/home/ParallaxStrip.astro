@@ -69,6 +69,8 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
       });
     }
 
+    const hint = document.getElementById('hscroll-view-hint');
+
     if (prefersReduced) {
       section.style.overflow = 'auto';
       const pin = section.querySelector('.hscroll-pin') as HTMLElement;
@@ -82,10 +84,16 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
       track.querySelectorAll('.hscroll-slide img').forEach((img) => {
         (img as HTMLElement).style.filter = 'none';
       });
+
+      // Show hint when section is visible (SP / reduced motion)
+      if (hint) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => { hint.style.opacity = e.isIntersecting ? '1' : '0'; });
+        }, { threshold: 0.1 });
+        observer.observe(section);
+      }
     } else {
       const totalScroll = track.scrollWidth - window.innerWidth;
-
-      const hint = document.getElementById('hscroll-view-hint');
 
       gsap.to(track, {
         x: -totalScroll,
