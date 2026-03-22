@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="flex md:flex-row items-center gap-10 w-full justify-between">
         <a href="/">
           <img
-            className={`transition-all duration-500 ${scrolled ? 'h-10 md:h-12' : 'h-16 md:h-20'}`}
+            className={`transition-all duration-500 w-auto ${scrolled ? 'h-6 md:h-8' : 'h-8 md:h-10'}`}
             width={617}
             height={205}
             src="/images/ryuichi oshimoto white.png"

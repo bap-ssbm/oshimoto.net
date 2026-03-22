@@ -79,7 +79,7 @@ const yearsActive = new Date().getFullYear() - 1984;
   } else {
     // Long delay only when preloader is visible (first visit in session)
     const preloaderVisible = !!document.getElementById('preloader');
-    const tl = gsap.timeline({ delay: preloaderVisible ? 2.2 : 0.3 });
+    const tl = gsap.timeline({ delay: preloaderVisible ? 1.5 : 0.3 });
 
     // Clip-path reveal on the video background
     const parallaxLayer = document.querySelector('[data-hero-parallax]');
