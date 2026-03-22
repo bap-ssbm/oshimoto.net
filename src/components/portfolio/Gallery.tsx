@@ -89,7 +89,7 @@ export default function Gallery({ imgData, setImgI, setShowImg }: GalleryProps) 
                   style={{ filter: 'grayscale(0.2)' }}
                 />
                 <div className="absolute inset-0 bg-black-950/0 group-hover:bg-black-950/40 transition-colors duration-500 flex items-end p-4">
-                  <span className="font-anonymous-pro text-[10px] text-cream/0 group-hover:text-cream/50 transition-colors duration-500 tracking-[0.1em]">
+                  <span className="font-anonymous-pro text-[10px] text-white/0 group-hover:text-white/50 transition-colors duration-500 tracking-[0.1em]">
                     {String(i + 1).padStart(2, '0')} / {String(imgData.length).padStart(2, '0')}
                   </span>
                 </div>
