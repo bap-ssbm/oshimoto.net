@@ -92,7 +92,8 @@ const yearsActive = new Date().getFullYear() - 1984;
 
     tl.fromTo($('jp'),
       { opacity: 0 },
-      { opacity: 0.6, duration: 2, ease: 'power1.out' }
+      { opacity: 0.6, duration: 2, ease: 'power1.out' },
+      '-=0.8'
     )
     .fromTo($('line'),
       { scaleX: 0, opacity: 0 },
