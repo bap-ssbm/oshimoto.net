@@ -12,7 +12,7 @@ import { SITE, CONTACT_IMAGE } from '../data/site-config';
   <!-- Full-height split screen -->
   <div class="min-h-[100svh] flex flex-col md:flex-row relative">
     <!-- Left: Image (fixed on desktop, clips at footer) -->
-    <div class="relative md:w-[45%] md:fixed md:left-0 md:top-0 md:h-[100svh] overflow-hidden z-10" data-contact-hero>
+    <div class="relative mt-[80px] md:mt-0 md:w-[45%] md:fixed md:left-0 md:top-0 md:h-[100svh] overflow-hidden z-10" style="clip-path: inset(0 0 0 0);" data-contact-hero>
       <img
         src={CONTACT_IMAGE}
         alt="Ryuichi Oshimoto"
@@ -55,13 +55,16 @@ import { SITE, CONTACT_IMAGE } from '../data/site-config';
   const d = (v: number) => prefersReduced ? 0.3 : v;
 
   const hero = document.querySelector('[data-contact-hero]') as HTMLElement;
+  const isPC = window.matchMedia('(min-width: 768px)').matches;
+  const headerH = isPC ? 80 : 0;
+
   if (hero) {
-    gsap.set(hero, { clipPath: 'inset(0 0 100% 0)' });
-    gsap.to(hero, { clipPath: 'inset(0 0 0% 0)', duration: d(1.6), delay: 0.1, ease: 'power4.inOut' });
+    gsap.set(hero, { clipPath: `inset(${headerH}px 0 100% 0)` });
+    gsap.to(hero, { clipPath: `inset(${headerH}px 0 0% 0)`, duration: d(1.6), delay: 0.1, ease: 'power4.inOut' });
 
     // Clip the fixed image from bottom as footer scrolls into view
     const footer = document.querySelector('[data-footer]') as HTMLElement;
-    if (footer && window.matchMedia('(min-width: 768px)').matches) {
+    if (footer && isPC) {
       ScrollTrigger.create({
         trigger: footer,
         start: 'top bottom',
@@ -69,7 +72,7 @@ import { SITE, CONTACT_IMAGE } from '../data/site-config';
         scrub: true,
         onUpdate: (self) => {
           const clipBottom = self.progress * 100;
-          hero.style.clipPath = `inset(0 0 ${clipBottom}% 0)`;
+          hero.style.clipPath = `inset(${headerH}px 0 ${clipBottom}% 0)`;
         },
       });
     }
