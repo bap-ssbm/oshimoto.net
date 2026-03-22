@@ -7,7 +7,7 @@ const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'service
 const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'template_071s328';
 
 const INPUT_CLASS =
-  'bg-transparent border-b border-warm-gray/20 focus:border-gold/50 focus:shadow-[0_1px_8px_-3px_rgba(201,169,110,0.3)] py-3 tracking-[0.1em] text-cream/80 text-[14px] font-brandon-grotesque transition-all duration-500 outline-none placeholder:text-warm-gray/30 placeholder:tracking-[0.15em] placeholder:text-[12px] placeholder:uppercase';
+  'bg-transparent border-b border-warm-gray/20 focus:border-gold/50 focus:shadow-[0_1px_8px_-3px_rgba(201,169,110,0.3)] py-3 tracking-[0.1em] text-cream/80 text-[14px] font-brandon-grotesque transition-all duration-500 outline-none placeholder:text-warm-gray/60 placeholder:tracking-[0.15em] placeholder:text-[12px] placeholder:uppercase';
 
 export default function Form() {
   const [msg, setMsg] = useState<string | null>(null);
