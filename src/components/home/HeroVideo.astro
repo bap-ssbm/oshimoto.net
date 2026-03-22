@@ -11,7 +11,7 @@
     playsinline
     muted
     loop
-    preload="auto"
+    preload="none"
     poster="/images/poster_pc.jpg"
     aria-label="Background video showcasing photography work"
   >
@@ -19,8 +19,8 @@
   </video>
   <!-- Fallback image shown until video plays -->
    <div id="hero-fallback" class="absolute inset-0 w-full h-full object-cover opacity-70">
-    <img src="/images/poster_pc.jpg" alt="" class="hidden md:block absolute inset-0 w-full h-full object-cover" />
-    <img src="/images/poster_sp.jpg" alt="" class="block md:hidden absolute inset-0 w-full h-full object-cover" />
+    <img src="/images/poster_pc.jpg" alt="" class="hidden md:block absolute inset-0 w-full h-full object-cover" fetchpriority="high" />
+    <img src="/images/poster_sp.jpg" alt="" class="block md:hidden absolute inset-0 w-full h-full object-cover" fetchpriority="high" />
    </div>
   
 </div>
@@ -30,13 +30,25 @@
   const fallback = document.getElementById('hero-fallback') as HTMLElement;
 
   if (video && fallback) {
-    // Hide fallback once video starts playing
     const hideFallback = () => { fallback.style.display = 'none'; };
     video.addEventListener('playing', hideFallback, { once: true });
 
+    // Start loading video after page is interactive
+    const startVideo = () => {
+      video.preload = 'auto';
+      video.load();
+      video.play().catch(() => {});
+    };
+
+    if (document.readyState === 'complete') {
+      setTimeout(startVideo, 500);
+    } else {
+      window.addEventListener('load', () => setTimeout(startVideo, 500), { once: true });
+    }
+
     // Touch to play on mobile
     document.body.addEventListener('touchstart', () => {
-      if (video.paused) video.play();
+      if (video.paused) { video.preload = 'auto'; video.load(); video.play().catch(() => {}); }
     }, { once: true });
   }
 </script>
