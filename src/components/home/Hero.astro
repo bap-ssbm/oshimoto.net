@@ -15,7 +15,7 @@ const yearsActive = new Date().getFullYear() - 1984;
         <p data-hero="jp" class="font-noto-serif-jp text-[16px] md:text-[18px] tracking-[0.3em] mb-6 text-black" style="opacity: 0;">
           押本龍一
         </p>
-        <div data-hero="line" class="w-20 h-px bg-black/20 mb-6 origin-center" style="opacity: 0;"></div>
+        <div data-hero="line" class="w-20 h-px bg-black/50 mb-6 origin-center" style="opacity: 0;"></div>
         <h1 data-hero="name" class="text-[42px] md:text-[76px] lg:text-[96px] font-cormorant font-normal tracking-[-0.02em] leading-[1.05] text-black" style="opacity: 0;">
           Ryuichi Oshimoto
         </h1>
@@ -97,7 +97,7 @@ const yearsActive = new Date().getFullYear() - 1984;
     )
     .fromTo($('line'),
       { scaleX: 0, opacity: 0 },
-      { scaleX: 1, opacity: 0.3, duration: 1.5, ease: 'power2.inOut' },
+      { scaleX: 1, opacity: 1, duration: 1.5, ease: 'power2.inOut' },
       '-=1.8'
     )
     .fromTo($('name'),
@@ -127,17 +127,17 @@ const yearsActive = new Date().getFullYear() - 1984;
     );
   }
 
-  // Scroll-linked effects (parallax, darken, content fade)
-  if (!prefersReduced && !isMobile) {
+  // Scroll-linked effects (parallax on bg only, not text)
+  if (!prefersReduced) {
     const heroSection = document.querySelector('.hero') as HTMLElement;
     const parallaxLayer = document.querySelector('[data-hero-parallax]') as HTMLElement;
     const overlay = document.querySelector('[data-hero-overlay]') as HTMLElement;
     const content = document.querySelector('[data-hero-content]') as HTMLElement;
 
     if (heroSection && parallaxLayer && overlay && content) {
-      // Video parallax — moves slower than scroll
+      // Background parallax only — moves slower than scroll
       gsap.to(parallaxLayer, {
-        y: 200,
+        y: isMobile ? 100 : 200,
         ease: 'none',
         scrollTrigger: {
           trigger: heroSection,
@@ -147,7 +147,7 @@ const yearsActive = new Date().getFullYear() - 1984;
         },
       });
 
-      // Overlay darkens as you scroll past 80%
+      // Overlay darkens as you scroll
       gsap.to(overlay, {
         backgroundColor: 'rgba(245, 242, 237, 0.95)',
         ease: 'none',
@@ -159,9 +159,8 @@ const yearsActive = new Date().getFullYear() - 1984;
         },
       });
 
-      // Content fades out and drifts up
+      // Content fades out (no translateY — stays fixed in place)
       gsap.to(content, {
-        y: -80,
         opacity: 0,
         ease: 'none',
         scrollTrigger: {
