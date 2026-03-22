@@ -92,7 +92,7 @@ export default function AboutPgLayout() {
           <h1 className="font-cormorant text-[44px] md:text-[72px] font-light tracking-[-0.02em] leading-[1.0]">
             Ryuichi<br />Oshimoto
           </h1>
-          <p className="font-noto-serif-jp text-[16px] md:text-[20px] tracking-[0.15em] text-cream/30 mt-4">押本龍一</p>
+          <p className="font-noto-serif-jp text-[16px] md:text-[20px] tracking-[0.15em] text-cream/50 mt-4">押本龍一</p>
           <div className="flex items-center gap-6 mt-8">
             <div className="w-12 h-px bg-gold/40" />
             <span className="font-anonymous-pro text-[11px] text-warm-gray/40 tracking-[0.15em]">Est. 1984 — {yearsActive} yrs</span>

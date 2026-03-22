@@ -15,7 +15,7 @@ const services = [
     <!-- Left: heading (sticky on desktop) -->
     <div class="md:w-[35%] md:sticky md:top-[200px] md:self-start">
       <SectionHeading jpLabel="専門" enTitle="Services" />
-      <p class="text-[14px] text-[--color-cream]/40 leading-[1.9] mt-10 max-w-[280px]">
+      <p class="text-[14px] text-[--color-cream]/60 leading-[1.9] mt-10 max-w-[280px]">
         Based in Los Angeles and Hayama, Japan. Available for assignments worldwide.
       </p>
       <a href="/contact" class="inline-flex items-center gap-3 mt-8 text-[11px] tracking-[0.25em] uppercase text-[--color-gold]/60 hover:text-[--color-gold] transition-colors duration-500">
@@ -38,11 +38,11 @@ const services = [
               <h3 class="font-cormorant text-[24px] md:text-[32px] font-light tracking-[-0.01em] leading-[1.1] transition-[letter-spacing] duration-700 md:group-hover:tracking-[0.02em]">
                 {svc.title}
               </h3>
-              <span class="font-noto-serif-jp text-[10px] tracking-[0.3em] text-[--color-warm-gray]/20 group-hover:text-[--color-warm-gray]/40 transition-colors duration-700 italic hidden md:inline">
+              <span class="font-noto-serif-jp text-[10px] tracking-[0.3em] text-[--color-warm-gray]/40 group-hover:text-[--color-warm-gray]/60 transition-colors duration-700 italic hidden md:inline">
                 {svc.jp}
               </span>
             </div>
-            <p class="text-[14px] text-[--color-cream]/40 leading-[1.8] max-w-[400px]">
+            <p class="text-[14px] text-[--color-cream]/60 leading-[1.8] max-w-[400px]">
               {svc.desc}
             </p>
           </div>
@@ -70,9 +70,9 @@ const services = [
       gsap.set(item, { clipPath: 'inset(0 100% 0 0)' });
       gsap.to(item, {
         clipPath: 'inset(0 0% 0 0)',
-        duration: 1.2,
+        duration: 2,
         delay: i * 0.15,
-        ease: 'expo.out',
+        ease: 'power1.out',
         scrollTrigger: { trigger: item, start: 'top 88%', once: true },
       });
     }

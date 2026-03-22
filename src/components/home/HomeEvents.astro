@@ -22,11 +22,11 @@ import Events from './Events/Events';
   if (content) {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     gsap.fromTo(content,
-      { y: prefersReduced ? 0 : 30, opacity: 0 },
-      { y: 0, opacity: 1,
-        duration: prefersReduced ? 0.3 : 0.9,
+      { opacity: 0 },
+      { opacity: 1,
+        duration: prefersReduced ? 0.3 : 2,
         delay: prefersReduced ? 0 : 0.3,
-        ease: 'expo.out',
+        ease: 'power1.out',
         scrollTrigger: { trigger: content, start: 'top 85%', once: true } }
     );
   }

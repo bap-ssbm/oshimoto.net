@@ -43,9 +43,9 @@ const stats = [
       { opacity: 0, scale: prefersReduced ? 1 : 0.6, filter: prefersReduced ? 'none' : 'blur(8px)' },
       {
         opacity: 1, scale: 1, filter: 'blur(0px)',
-        duration: prefersReduced ? 0.3 : 1,
+        duration: prefersReduced ? 0.3 : 2,
         delay: prefersReduced ? 0 : i * 0.15,
-        ease: 'expo.out',
+        ease: 'power1.out',
         scrollTrigger: {
           trigger: item,
           start: 'top 90%',
@@ -57,7 +57,7 @@ const stats = [
                 val: numericValue,
                 duration: 1.8,
                 delay: i * 0.12,
-                ease: 'expo.out',
+                ease: 'power1.out',
                 onUpdate: () => {
                   valueEl.textContent = Math.round(counter.val) + suffix;
                 },

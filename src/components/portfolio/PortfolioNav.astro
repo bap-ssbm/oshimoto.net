@@ -11,9 +11,9 @@ const links = [
 <nav class="flex w-full justify-center gap-8 md:gap-12 flex-wrap text-[13px] tracking-[0.2em]" aria-label="Portfolio navigation">
   {links.map((link, i) => (
     <>
-      {i > 0 && <span class="text-[--color-warm-gray]/20">/</span>}
+      {i > 0 && <span class="text-[--color-warm-gray]/40">/</span>}
       <a href={link.href} class="flex items-baseline gap-2">
-        <span class={`font-anonymous-pro text-[10px] tracking-[0.1em] ${pathName === link.href ? 'text-[--color-gold]/60' : 'text-[--color-warm-gray]/30'}`}>
+        <span class={`font-anonymous-pro text-[10px] tracking-[0.1em] ${pathName === link.href ? 'text-[--color-gold]/60' : 'text-[--color-warm-gray]/50'}`}>
           {link.index}
         </span>
         <span class={`relative ${pathName === link.href ? 'active-underline text-[--color-cream]' : 'underline-hover-effect text-[--color-cream]/60 hover:text-[--color-cream] transition-colors duration-300'}`}>

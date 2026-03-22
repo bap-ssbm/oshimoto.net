@@ -35,10 +35,10 @@ import { CONTACT_IMAGE } from '../../data/site-config';
 
         <div data-cta-el class="w-12 h-px bg-gold/40 mb-8 origin-left" style="opacity: 0;"></div>
 
-        <p data-cta-el class="text-[14px] md:text-[15px] text-cream/40 leading-[1.9] mb-4" style="opacity: 0;">
+        <p data-cta-el class="text-[14px] md:text-[15px] text-cream/60 leading-[1.9] mb-4" style="opacity: 0;">
           Every photograph begins with a conversation.
         </p>
-        <p data-cta-el class="font-noto-serif-jp text-[12px] md:text-[13px] text-warm-gray/30 leading-[2] mb-12" style="opacity: 0;">
+        <p data-cta-el class="font-noto-serif-jp text-[12px] md:text-[13px] text-warm-gray/50 leading-[2] mb-12" style="opacity: 0;">
           撮影のご相談、お気軽にどうぞ。
         </p>
 
@@ -99,7 +99,7 @@ import { CONTACT_IMAGE } from '../../data/site-config';
             y: 0,
             duration: 1.2,
             delay: i * 0.15,
-            ease: 'expo.out',
+            ease: 'power1.out',
             scrollTrigger: { trigger: heading, start: 'top 85%', once: true },
           });
         });
@@ -110,12 +110,12 @@ import { CONTACT_IMAGE } from '../../data/site-config';
     const elements = section.querySelectorAll('[data-cta-el]');
     elements.forEach((el, i) => {
       gsap.fromTo(el,
-        { y: prefersReduced ? 0 : 30, opacity: 0 },
+        { opacity: 0 },
         {
-          y: 0, opacity: 1,
-          duration: prefersReduced ? 0.3 : 1,
+          opacity: 1,
+          duration: prefersReduced ? 0.3 : 2,
           delay: prefersReduced ? 0 : i * 0.12,
-          ease: 'expo.out',
+          ease: 'power1.out',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         }
       );

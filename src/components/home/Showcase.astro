@@ -35,7 +35,7 @@ const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Docum
         {/* Content row */}
         <div class="relative z-10 flex items-center py-10 md:py-16">
           {/* Number */}
-          <span class="font-anonymous-pro text-[12px] md:text-[14px] text-[--color-warm-gray]/30 group-hover:text-[--color-gold]/60 transition-colors duration-700 tracking-[0.1em] w-[60px] md:w-[80px] flex-shrink-0">
+          <span class="font-anonymous-pro text-[12px] md:text-[14px] text-[--color-warm-gray]/50 group-hover:text-[--color-gold]/60 transition-colors duration-700 tracking-[0.1em] w-[60px] md:w-[80px] flex-shrink-0">
             0{i + 1}
           </span>
 
@@ -81,12 +81,12 @@ const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Docum
   // Row entrance animations
   document.querySelectorAll('[data-showcase-row]').forEach((row, i) => {
     gsap.fromTo(row,
-      { opacity: 0, y: prefersReduced ? 0 : 30 },
+      { opacity: 0 },
       {
-        opacity: 1, y: 0,
-        duration: dur(0.9),
+        opacity: 1,
+        duration: dur(2),
         delay: prefersReduced ? 0 : i * 0.15,
-        ease: 'expo.out',
+        ease: 'power1.out',
         scrollTrigger: { trigger: row, start: 'top 88%', once: true },
       }
     );
@@ -98,7 +98,7 @@ const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Docum
 
       row.addEventListener('mouseenter', () => {
         gsap.killTweensOf(img);
-        gsap.to(img, { scale: 1.15, duration: 4, ease: 'expo.out' });
+        gsap.to(img, { scale: 1.15, duration: 4, ease: 'power1.out' });
       });
 
       row.addEventListener('mouseleave', () => {
@@ -113,7 +113,7 @@ const MARQUEE_ITEMS = ['Portraits', 'Landscape', 'Editorial', 'Fine Art', 'Docum
   if (marquee) {
     gsap.fromTo(marquee,
       { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: 'expo.out',
+      { opacity: 1, duration: 2, ease: 'power1.out',
         scrollTrigger: { trigger: marquee, start: 'top 90%', once: true } }
     );
   }

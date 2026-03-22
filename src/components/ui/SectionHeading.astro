@@ -9,7 +9,7 @@ const { jpLabel, enTitle } = Astro.props;
 
 <div data-section-heading>
   <div class="flex items-center gap-4 mb-5">
-    <span class="sect-ordinal font-anonymous-pro text-[10px] md:text-[11px] tracking-[0.15em] text-[--color-warm-gray]/25" style="opacity: 0;">
+    <span class="sect-ordinal font-anonymous-pro text-[10px] md:text-[11px] tracking-[0.15em] text-[--color-warm-gray]/45" style="opacity: 0;">
       —
     </span>
     <p class="sect-jp font-noto-serif-jp text-[11px] md:text-[12px] tracking-[0.6em] text-[--color-warm-gray]/70 italic" style="opacity: 0;">
@@ -40,28 +40,28 @@ const { jpLabel, enTitle } = Astro.props;
     if (ordinal) {
       gsap.fromTo(ordinal,
         { x: -10, opacity: 0 },
-        { x: 0, opacity: 1, duration: dur(0.6), ease: 'expo.out',
+        { x: 0, opacity: 1, duration: dur(1.5), ease: 'power1.out',
           scrollTrigger: { trigger: ordinal, start: 'top 88%', once: true } }
       );
     }
     if (jp) {
       gsap.fromTo(jp,
         { x: 30, opacity: 0 },
-        { x: 0, opacity: 1, duration: dur(0.8), ease: 'expo.out',
+        { x: 0, opacity: 1, duration: dur(1.8), ease: 'power1.out',
           scrollTrigger: { trigger: jp, start: 'top 88%', once: true } }
       );
     }
     if (title) {
       gsap.fromTo(title,
-        { y: prefersReduced ? 0 : 60, opacity: 0, skewY: prefersReduced ? 0 : 2 },
-        { y: 0, opacity: 1, skewY: 0, duration: dur(1.2), ease: 'expo.out',
+        { y: prefersReduced ? 0 : 60, opacity: 0,  },
+        { y: 0, opacity: 1, duration: dur(2), ease: 'power1.out',
           scrollTrigger: { trigger: title, start: 'top 85%', once: true } }
       );
     }
     if (line) {
       gsap.fromTo(line,
         { scaleX: 0 },
-        { scaleX: 1, duration: dur(1), ease: 'expo.inOut',
+        { scaleX: 1, duration: dur(1.5), ease: 'power2.inOut',
           scrollTrigger: { trigger: line, start: 'top 85%', once: true } }
       );
     }

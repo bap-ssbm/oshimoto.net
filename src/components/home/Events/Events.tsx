@@ -40,7 +40,7 @@ export default function Events() {
 
       {/* Past events timeline */}
       <div className="md:w-[55%] md:pt-10">
-        <p className="font-anonymous-pro text-[10px] tracking-[0.25em] uppercase text-warm-gray/30 mb-8">
+        <p className="font-anonymous-pro text-[10px] tracking-[0.25em] uppercase text-warm-gray/50 mb-8">
           Past Exhibitions
         </p>
         <div className="relative">
@@ -75,15 +75,15 @@ export default function Events() {
                 <p className="font-noto-serif-jp text-[14px] md:text-[15px] text-cream/80 leading-[1.7] group-hover:text-cream transition-colors duration-500">
                   {evt.name}
                 </p>
-                <p className="text-warm-gray/40 text-[12px] mt-1">{evt.place}</p>
+                <p className="text-warm-gray/55 text-[12px] mt-1">{evt.place}</p>
                 <div className="flex gap-4 mt-2">
                   {evt.link && (
-                    <a href={evt.link} target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase text-warm-gray/30 hover:text-gold transition-colors duration-500">
+                    <a href={evt.link} target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase text-warm-gray/50 hover:text-gold transition-colors duration-500">
                       Instagram →
                     </a>
                   )}
                   {evt.pdf && (
-                    <a href={evt.pdf} target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase text-warm-gray/30 hover:text-gold transition-colors duration-500">
+                    <a href={evt.pdf} target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase text-warm-gray/50 hover:text-gold transition-colors duration-500">
                       PDF →
                     </a>
                   )}
