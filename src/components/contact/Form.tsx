@@ -116,7 +116,7 @@ export default function Form() {
         </div>
         <button
           type="submit"
-          className="mt-4 w-fit text-[12px] tracking-[0.3em] uppercase text-warm-gray/50 hover:text-gold transition-colors duration-500 relative pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-px after:bg-gold/30 after:scale-x-0 after:origin-left after:transition-transform after:duration-500 hover:after:scale-x-100"
+          className="mt-4 w-fit text-[12px] tracking-[0.3em] uppercase text-warm-gray/60 hover:text-gold border border-warm-gray/30 hover:border-gold/50 px-8 py-4 transition-all duration-500"
         >
           {isLoading ? <BiLoaderAlt className="animate-spin" aria-label="Sending..." /> : 'Send Message'}
         </button>
