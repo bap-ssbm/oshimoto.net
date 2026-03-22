@@ -239,3 +239,7 @@ dist/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Environment variables
+.env
+.env.local
