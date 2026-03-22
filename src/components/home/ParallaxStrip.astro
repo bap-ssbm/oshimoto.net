@@ -19,18 +19,18 @@ const spWidths = ['70vw', '45vw', '65vw', '42vw', '72vw', '65vw', '48vw'];
       {slides.map((slide, i) => (
         <a
           href={slide.href}
-          class="hscroll-slide flex-shrink-0 relative block group"
+          class="hscroll-slide flex-shrink-0 relative block group overflow-hidden"
           data-sp-width={spWidths[i]}
           style={`width: ${widths[i]};`}
         >
           <img
             src={slide.src}
             alt=""
-            class="w-full object-cover block transition-all duration-[2000ms] ease-out group-hover:brightness-100 group-hover:grayscale-0"
+            class="w-full object-cover block transition-all duration-[2000ms] ease-out group-hover:scale-[1.05] group-hover:brightness-100 group-hover:grayscale-0"
             style="height: 45svh; filter: grayscale(0.3) sepia(0.06) brightness(0.85);"
             loading="lazy"
           />
-          <span class="absolute bottom-3 right-3 font-anonymous-pro text-[9px] text-white/20 tracking-[0.1em]">
+          <span class="absolute bottom-3 right-3 font-anonymous-pro text-[9px] text-white/0 group-hover:text-white/50 transition-colors duration-700 tracking-[0.1em]">
             {String(i + 1).padStart(2, '0')}
           </span>
         </a>

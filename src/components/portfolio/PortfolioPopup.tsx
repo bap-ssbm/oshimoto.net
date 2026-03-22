@@ -66,7 +66,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         />
       </div>
       <button
-        className="absolute md:hover:scale-110 duration-200 border p-2 border-white rounded-full bottom-[50%] right-[5%] text-[25px]"
+        className="absolute md:hover:scale-110 duration-200 border p-2 border-black/30 rounded-full bottom-[50%] right-[5%] text-[25px]"
         onClick={() => {
           const nextI = imgI + 1;
           setImgI(nextI === imgData.length ? 0 : nextI);
@@ -76,7 +76,7 @@ export default function PortfolioPopup({ setImgI, imgI, setShowImg, imgData }: P
         <CgPlayTrackNext className="fill-current" />
       </button>
       <button
-        className="absolute md:hover:scale-110 duration-200 border p-2 border-white rounded-full bottom-[50%] left-[5%] text-[25px]"
+        className="absolute md:hover:scale-110 duration-200 border p-2 border-black/30 rounded-full bottom-[50%] left-[5%] text-[25px]"
         onClick={() => {
           const nextI = imgI - 1;
           setImgI(nextI === -1 ? imgData.length - 1 : nextI);
