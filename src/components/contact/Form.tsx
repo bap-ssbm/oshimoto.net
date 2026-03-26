@@ -71,7 +71,7 @@ export default function Form() {
             onChange={(e) => setName(e.target.value)}
             value={name}
             type="text"
-            name="name"
+            name="user_name"
             placeholder="Name"
             required
           />
@@ -84,7 +84,7 @@ export default function Form() {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
-            name="email"
+            name="user_email"
             placeholder="Email"
             required
           />
