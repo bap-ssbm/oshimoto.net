@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import Analytics from '@vercel/analytics/astro';
 import Navbar from '../components/ui/navbar/Navbar';
 import Footer from '../components/ui/Footer.astro';
 import Preloader from '../components/ui/Preloader.astro';
@@ -65,6 +66,7 @@ const canonicalURL = canonicalPath ? new URL(canonicalPath, SITE.url).toString()
     <Navbar client:load />
     <slot />
     <Footer />
+    <Analytics />
 
     <script>
       import Lenis from 'lenis';
