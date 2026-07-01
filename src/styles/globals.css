@@ -8,15 +8,11 @@
   font-family: AnonymousPro;
   src: url('/fonts/AnonymousPro-Regular.ttf');
 }
-@font-face {
-  font-family: BrandonGrotesque;
-  src: url('/fonts/BrandonGrotesque-Light.ttf');
-}
 
 @theme {
   --font-anonymous-pro: 'AnonymousPro', sans-serif;
   --font-abril-fat-face: 'AbrilFatFace', sans-serif;
-  --font-brandon-grotesque: 'BrandonGrotesque', sans-serif;
+  --font-brandon-grotesque: 'Montserrat', sans-serif;
   --font-geologica: 'Geologica', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-noto-serif-jp: 'Noto Serif JP', serif;
